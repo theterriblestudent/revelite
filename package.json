@@ -1,0 +1,32 @@
+{
+  "name": "revelite",
+  "version": "1.0.0",
+  "description": "Car tuning shop website.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/theterriblestudent/revelite.git"
+  },
+  "keywords": [
+    "e-commerce",
+    "website",
+    "cars"
+  ],
+  "author": "Sanele Madondo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/theterriblestudent/revelite/issues"
+  },
+  "homepage": "https://github.com/theterriblestudent/revelite#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "express-handlebars": "^7.1.2",
+    "sass": "^1.70.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.3"
+  }
+}
