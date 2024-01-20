@@ -1,0 +1,115 @@
+.container {
+    $padding-inline: 5%;
+    $content-max-width: 1500px;
+
+    display: grid;
+
+    grid-template-columns: [full-width-start] minmax($padding-inline, 1fr) [content-start] min(100% - (2 * $padding-inline), $content-max-width) [content-end] minmax($padding-inline, 1fr) [full-width-end];
+}
+
+.container > :not(.full-width, .breakout) {
+    grid-column: content;
+}
+
+.container > .full-width {
+    grid-column: full-width;
+}
+
+//layout
+.flx {
+    display: flex;
+}
+
+.row {
+    flex-direction: row;
+}
+
+.column {
+    flex-direction: column;
+}
+
+.ai-center {
+    align-items: center;
+}
+
+.ai-start {
+    align-items: flex-start;
+}
+
+.jc-sb {
+    justify-content: space-between;
+}
+
+.grd {
+    display: grid;
+}
+
+//Spacing
+.pt-10 {
+    padding-top: 10px;
+    
+}
+
+.pb-10 {
+    padding-bottom: 10px;
+}
+
+.pt-5 {
+    padding-top: 5px;
+}
+
+.pb-5 {
+    padding-bottom: 5px;
+}
+
+.pl-25 {
+    padding-left: 25px;
+ }
+
+.pr-25 {
+    padding-right: 25px;
+}
+
+.pl-35 {
+    padding-left: 35px;
+}
+
+.pr-35 {
+    padding-right: 35px;
+}
+
+//Sizes 
+.h-fs {
+    height: 100vh;
+}
+
+.w-fs {
+    width: 100vw;
+}
+
+//Flow
+.g-5 {
+    gap: 5px;
+}
+
+.g-16 {
+    gap: 1rem;
+}
+
+.g-20 {
+    gap: 1.25rem;
+}
+
+.g-40 {
+    gap: 2.5rem;
+}
+
+.g-60 {
+    gap: 3.75rem;
+}
+
+.g-100 {
+    gap: 6.25rem;
+}
+
+//responsiveness

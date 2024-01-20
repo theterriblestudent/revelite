@@ -1,0 +1,31 @@
+@use "../abstracts/composition" as *;
+@use '../abstracts/utilities' as *;
+
+.btn {
+    @extend .pt-5;
+    @extend .pb-5;
+    @extend .pl-35;
+    @extend .pr-35;
+
+    @extend .egg;
+    @extend .bg-dark;
+    @extend .font-sec;
+    @extend .clr-light;
+    @extend .fs-20;
+    @extend .accent-hover;
+    @extend .clr-trans;
+    @extend .pointer;
+}
+
+.section-heading {
+    @extend .font-sec;
+    @extend .fs-60;
+    @extend .clr-heading;
+
+}
+
+.body-text {
+    @extend .font-primary;
+    @extend .fs-20;
+    @extend .clr-body;
+}

@@ -1,0 +1,85 @@
+@use './variables';
+
+//Typography
+.font-primary {
+    font-family: "Roboto Condensed", sans-serif;
+}
+
+.font-sec {
+    font-family: "Bebas Neue", sans-serif;
+}
+
+.fs-18 {
+    font-size: 1.125rem;
+}
+
+.fs-20 {
+    font-size: 1.25rem;
+}
+
+.fs-24 {
+    font-size: 1.5rem;
+}
+
+.fs-32 {
+    font-size: 2rem;
+}
+
+.fs-45 {
+    font-size: 2.8125rem;
+}
+
+.fs-60 {
+    font-size: 3.75rem;
+}
+
+.fs-80 {
+    font-size: 5rem;
+}
+
+.lh-1 {
+    line-height: 1.2;
+}
+
+.clr-heading {
+    color: variables.$dark-color;
+}
+
+.clr-body {
+    color: variables.$body-text-color;
+}
+
+.clr-accent {
+    color: variables.$accent-color;
+}
+
+.clr-light {
+    color: variables.$light-color;
+}
+
+.accent-hover:hover {
+    color: variables.$accent-color;
+}
+
+//Backgrounds
+.bg-dark {
+    background-color: variables.$dark-color;
+}
+
+
+//Borders
+.egg {
+    border-radius: 500px;
+}
+
+
+//Animations
+.clr-trans {
+    transition: color 0.3s ease-in-out;
+}
+
+
+//behavior 
+.pointer {
+    cursor: pointer;
+}
