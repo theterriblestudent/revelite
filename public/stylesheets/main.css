@@ -75,7 +75,7 @@ select {
 }
 .container {
   display: grid;
-  grid-template-columns: [full-width-start] minmax(5%, 1fr) [content-start] min(90%, 1500px) [content-end] minmax(5%, 1fr) [full-width-end];
+  grid-template-columns: [full-width-start] minmax(5%, 1fr) [content-start] min(90%, 1450px) [content-end] minmax(5%, 1fr) [full-width-end];
 }
 
 .container > :not(.full-width, .breakout) {
@@ -86,7 +86,7 @@ select {
   grid-column: full-width;
 }
 
-.flx {
+.flx, .catalogue .catalogue__item {
   display: flex;
 }
 
@@ -94,11 +94,11 @@ select {
   flex-direction: row;
 }
 
-.column {
+.column, .catalogue .catalogue__item {
   flex-direction: column;
 }
 
-.ai-center {
+.ai-center, .catalogue .catalogue__item {
   align-items: center;
 }
 
@@ -106,12 +106,28 @@ select {
   align-items: flex-start;
 }
 
-.jc-sb {
+.jc-sb, .catalogue .catalogue__item {
   justify-content: space-between;
+}
+
+.jc-start {
+  justify-content: flex-start;
+}
+
+.jc-center {
+  justify-content: center;
 }
 
 .grd {
   display: grid;
+}
+
+.pt-5, .btn {
+  padding-top: 5px;
+}
+
+.pb-5, .btn {
+  padding-bottom: 5px;
 }
 
 .pt-10 {
@@ -122,12 +138,36 @@ select {
   padding-bottom: 10px;
 }
 
-.pt-5, .btn {
-  padding-top: 5px;
+.pt-20 {
+  padding-top: 20px;
 }
 
-.pb-5, .btn {
-  padding-bottom: 5px;
+.pb-20, .catalogue .catalogue__item {
+  padding-bottom: 20px;
+}
+
+.pt-30 {
+  padding-top: 30px;
+}
+
+.pb-30 {
+  padding-bottom: 30px;
+}
+
+.pt-50, .catalogue .catalogue__item {
+  padding-top: 50px;
+}
+
+.pb-50 {
+  padding-bottom: 50px;
+}
+
+.pt-70 {
+  padding-top: 70px;
+}
+
+.pb-70 {
+  padding-bottom: 70px;
 }
 
 .pl-25 {
@@ -146,6 +186,38 @@ select {
   padding-right: 35px;
 }
 
+.pr-65 {
+  padding-right: 65px;
+}
+
+.pl-65 {
+  padding-left: 65px;
+}
+
+.pl-80 {
+  padding-left: 80px;
+}
+
+.pr-80 {
+  padding-right: 70px;
+}
+
+.mb-10 {
+  margin-bottom: 10px;
+}
+
+.mb-20, .catalogue .catalogue__item > img {
+  margin-bottom: 1.25rem;
+}
+
+.mb-35 {
+  margin-bottom: 35px;
+}
+
+.mt-35 {
+  margin-top: 35px;
+}
+
 .h-fs {
   height: 100vh;
 }
@@ -154,20 +226,24 @@ select {
   width: 100vw;
 }
 
-.g-5 {
-  gap: 5px;
+.w-fit {
+  width: 100%;
 }
 
-.g-16 {
-  gap: 1rem;
+.g-5 {
+  gap: 5px;
 }
 
 .g-20 {
   gap: 1.25rem;
 }
 
+.g-30 {
+  gap: 30px;
+}
+
 .g-40 {
-  gap: 2.5rem;
+  gap: 40px;
 }
 
 .g-60 {
@@ -178,11 +254,19 @@ select {
   gap: 6.25rem;
 }
 
+.absolute {
+  position: absolute;
+}
+
+.relative, .catalogue .catalogue__item {
+  position: relative;
+}
+
 .font-primary, .body-text {
   font-family: "Roboto Condensed", sans-serif;
 }
 
-.font-sec, .btn, .section-heading {
+.font-sec, .catalogue .catalogue__item > h2, .btn, .section-heading {
   font-family: "Bebas Neue", sans-serif;
 }
 
@@ -194,12 +278,16 @@ select {
   font-size: 1.25rem;
 }
 
-.fs-24 {
+.fs-24, .catalogue .catalogue__item > h2 {
   font-size: 1.5rem;
 }
 
 .fs-32 {
   font-size: 2rem;
+}
+
+.fs-36 {
+  font-size: 2.25rem;
 }
 
 .fs-45 {
@@ -214,16 +302,24 @@ select {
   font-size: 5rem;
 }
 
+.fw-norm, .catalogue .catalogue__item > h2 {
+  font-weight: normal;
+}
+
+.fw-bold {
+  font-weight: bold;
+}
+
 .lh-1 {
   line-height: 1.2;
 }
 
-.clr-heading, .section-heading {
+.clr-heading, .catalogue .catalogue__item > h2, .section-heading {
   color: #000000;
 }
 
 .clr-body, .body-text {
-  color: #4f4f4f;
+  color: #666666;
 }
 
 .clr-accent {
@@ -246,6 +342,10 @@ select {
   border-radius: 500px;
 }
 
+.rounded-20, .catalogue .catalogue__item {
+  border-radius: 20px;
+}
+
 .clr-trans, .btn {
   transition: color 0.3s ease-in-out;
 }
@@ -256,7 +356,6 @@ select {
 
 nav {
   height: 100px;
-  position: absolute;
   top: 0;
   left: 0;
   right: 0;
@@ -288,18 +387,65 @@ nav .nav__content > i {
 .hero .hero__text > .body-text {
   max-width: 90%;
   margin-top: -10px;
-  margin-bottom: 10px;
 }
 .hero img {
   width: 85vw;
   max-width: none;
   height: auto;
-  margin-top: 35px;
 }
 
-.part-brands {
-  width: 100%;
-  height: 12vh;
+.services > div {
+  width: 50%;
+}
+.services > div:first-child p:not(:first-child, :last-child) {
+  color: #FFFFFF;
+  -webkit-text-stroke: 3px rgba(16, 16, 16, 0.384);
+  letter-spacing: 3.2px;
+}
+.services > div:last-child {
+  width: 45%;
+}
+.services > div:last-child p {
+  width: 75%;
+}
+.services > div .point {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #EB8921;
+}
+
+.catalogue {
+  grid-template-columns: repeat(4, 1fr);
+}
+.catalogue > div:first-child, .catalogue > div:nth-child(2) {
+  grid-column: span 2;
+}
+.catalogue > div:first-child img {
+  width: 520px;
+  height: auto;
+}
+.catalogue > div:nth-child(2) p {
+  width: 85%;
+}
+.catalogue > div {
+  background-color: rgba(211, 211, 211, 0.35);
+}
+.catalogue > div .arrow {
+  top: 30px;
+  right: 35px;
+  font-size: 2rem;
+}
+.catalogue .catalogue__item > img {
+  width: 60%;
+}
+
+body::-webkit-scrollbar {
+  width: 0.8rem;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: #EB8921;
 }
 
 /*# sourceMappingURL=main.css.map */

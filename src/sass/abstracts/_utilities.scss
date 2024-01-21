@@ -25,6 +25,10 @@
     font-size: 2rem;
 }
 
+.fs-36 {
+    font-size: 2.25rem;
+}
+
 .fs-45 {
     font-size: 2.8125rem;
 }
@@ -35,6 +39,14 @@
 
 .fs-80 {
     font-size: 5rem;
+}
+
+.fw-norm {
+    font-weight: normal;
+}
+
+.fw-bold {
+    font-weight: bold;
 }
 
 .lh-1 {
@@ -70,6 +82,10 @@
 //Borders
 .egg {
     border-radius: 500px;
+}
+
+.rounded-20 {
+    border-radius: 20px;
 }
 
 

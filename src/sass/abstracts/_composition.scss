@@ -1,6 +1,6 @@
 .container {
     $padding-inline: 5%;
-    $content-max-width: 1500px;
+    $content-max-width: 1450px;
 
     display: grid;
 
@@ -40,11 +40,29 @@
     justify-content: space-between;
 }
 
+.jc-start {
+    justify-content: flex-start;
+}
+
+.jc-center {
+    justify-content: center;
+}
+
 .grd {
     display: grid;
 }
 
 //Spacing
+
+//Vertical
+.pt-5 {
+    padding-top: 5px;
+}
+
+.pb-5 {
+    padding-bottom: 5px;
+}
+
 .pt-10 {
     padding-top: 10px;
     
@@ -54,14 +72,40 @@
     padding-bottom: 10px;
 }
 
-.pt-5 {
-    padding-top: 5px;
+.pt-20 {
+    padding-top: 20px;
 }
 
-.pb-5 {
-    padding-bottom: 5px;
+.pb-20 {
+    padding-bottom: 20px;
 }
 
+.pt-30 {
+    padding-top: 30px;
+}
+
+.pb-30 {
+    padding-bottom: 30px;
+}
+
+.pt-50 {
+    padding-top: 50px;
+}
+
+.pb-50 {
+    padding-bottom: 50px;
+}
+
+.pt-70 {
+    padding-top: 70px;
+}
+
+.pb-70 {
+    padding-bottom: 70px;
+}
+
+
+//Horizantal
 .pl-25 {
     padding-left: 25px;
  }
@@ -78,6 +122,41 @@
     padding-right: 35px;
 }
 
+.pr-65 {
+    padding-right: 65px;
+}
+
+.pl-65 {
+    padding-left: 65px;
+}
+
+.pl-80 {
+    padding-left: 80px;
+}
+
+.pr-80 {
+    padding-right: 70px;
+}
+
+//Margins
+
+//Vertical
+.mb-10 {
+    margin-bottom: 10px;
+}
+
+.mb-20 {
+    margin-bottom: 1.25rem;
+}
+
+.mb-35 {
+    margin-bottom: 35px;
+}
+
+.mt-35 {
+    margin-top: 35px;
+}
+
 //Sizes 
 .h-fs {
     height: 100vh;
@@ -87,22 +166,29 @@
     width: 100vw;
 }
 
+.w-fit {
+    width: 100%;
+}
+
+
 //Flow
 .g-5 {
     gap: 5px;
 }
 
-.g-16 {
-    gap: 1rem;
-}
 
 .g-20 {
     gap: 1.25rem;
 }
 
-.g-40 {
-    gap: 2.5rem;
+.g-30 {
+    gap: 30px;
 }
+
+.g-40 {
+    gap: 40px;
+}
+
 
 .g-60 {
     gap: 3.75rem;
@@ -112,4 +198,12 @@
     gap: 6.25rem;
 }
 
+//Position
+.absolute {
+    position: absolute;
+}
+
+.relative {
+    position: relative;
+}
 //responsiveness

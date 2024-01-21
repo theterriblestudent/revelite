@@ -1,3 +1,7 @@
+@use "../abstracts/variables";
+@use "../abstracts/composition" as *;
+@use "../abstracts/utilities" as *;
+
 .hero {
     grid-template-columns: 30% 1fr;
     grid-column: content / full-width;
@@ -12,7 +16,6 @@
         & > .body-text {
             max-width: 90%;
             margin-top: -10px;
-            margin-bottom: 10px;
         }
     }
 
@@ -20,11 +23,92 @@
         width: 85vw;
         max-width: none;
         height: auto;
-        margin-top: 35px;
     }
 }
 
-.part-brands {
-    width: 100%;
-    height: 12vh;
+.services {
+    & > div {
+        width: 50%;
+
+        &:first-child {
+            p:not(:first-child, :last-child) {
+                color: variables.$light-color;
+                -webkit-text-stroke: 3px rgba(16, 16, 16, 0.384);
+                letter-spacing: 3.2px;
+            }
+        }
+
+        &:last-child {
+            width: 45%;
+
+            p {
+                width: 75%;
+            }
+        }
+        .point {
+            width: 6px;
+            height: 6px;
+
+            border-radius: 50%;
+
+            background-color: variables.$accent-color;
+        }
+    }
+}
+
+.catalogue {
+    grid-template-columns: repeat(4, 1fr);
+
+    & > div:first-child, & > div:nth-child(2) {
+        grid-column: span 2;
+    }
+
+    & > div:first-child {
+        img {
+            width: 520px;
+            height: auto;
+        }
+    }
+
+    & > div:nth-child(2) {
+        p {
+            width: 85%;
+        }
+    }
+
+    & > div {
+        background-color:rgba(211, 211, 211, 0.35);
+
+        .arrow {
+            top: 30px;
+            right: 35px;
+
+            font-size: 2rem;
+        }
+    }
+
+    .catalogue__item {
+        @extend .flx;
+        @extend .jc-sb;
+        @extend .ai-center;
+        @extend .column;
+
+        @extend .relative;
+
+        @extend .pt-50;
+        @extend .pb-20;
+        @extend .rounded-20;
+
+        & > h2 {
+            @extend .font-sec;
+            @extend .fs-24;
+            @extend .clr-heading;
+            @extend .fw-norm;
+        }
+
+        & > img {
+            width: 60%;
+            @extend .mb-20;
+        }
+    }
 }

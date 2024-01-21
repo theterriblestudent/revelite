@@ -2,3 +2,12 @@
 @use './abstracts/abstracts';
 @use './componets/components';
 @use './layouts/layouts';
+
+//Scrollbar Styling 
+body::-webkit-scrollbar {
+    width: 0.8rem;
+}
+
+body::-webkit-scrollbar-thumb {
+    background-color: abstracts.$accent-color;
+}
