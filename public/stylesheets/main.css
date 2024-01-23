@@ -103,7 +103,27 @@ select {
 }
 
 .ai-start {
-  align-items: flex-start;
+  align-items: start;
+}
+
+.as-center {
+  align-self: center;
+}
+
+.as-stretch {
+  align-self: stretch;
+}
+
+.as-start {
+  align-self: start;
+}
+
+.js-center {
+  justify-self: center;
+}
+
+.js-start {
+  justify-self: start;
 }
 
 .jc-sb, .catalogue .catalogue__item {
@@ -122,6 +142,14 @@ select {
   display: grid;
 }
 
+.subgrid-c {
+  grid-template-columns: subgrid;
+}
+
+.subgrid-r {
+  grid-template-rows: subgrid;
+}
+
 .pt-5, .btn {
   padding-top: 5px;
 }
@@ -134,7 +162,7 @@ select {
   padding-top: 10px;
 }
 
-.pb-10 {
+.pb-10, .catalogue .catalogue__item {
   padding-bottom: 10px;
 }
 
@@ -142,7 +170,7 @@ select {
   padding-top: 20px;
 }
 
-.pb-20, .catalogue .catalogue__item {
+.pb-20 {
   padding-bottom: 20px;
 }
 
@@ -218,6 +246,22 @@ select {
   margin-top: 35px;
 }
 
+.mb-50 {
+  margin-bottom: 50px;
+}
+
+.mb-80 {
+  margin-bottom: 80px;
+}
+
+.mb-120 {
+  margin-bottom: 120px;
+}
+
+.mr-10 {
+  margin-right: 10px;
+}
+
 .h-fs {
   height: 100vh;
 }
@@ -230,8 +274,16 @@ select {
   width: 100%;
 }
 
+.h-fit {
+  width: 100%;
+}
+
 .g-5 {
   gap: 5px;
+}
+
+.g-10 {
+  gap: 10px;
 }
 
 .g-20 {
@@ -262,11 +314,32 @@ select {
   position: relative;
 }
 
+.t-0 {
+  top: 0;
+}
+
+.b-0 {
+  bottom: 0;
+}
+
+.l-0 {
+  left: 0;
+}
+
+.r-0 {
+  right: 0;
+}
+
+@media only screen and (max-width: 60.5rem) {
+  .g-15-md {
+    gap: 15px;
+  }
+}
 .font-primary, .body-text {
   font-family: "Roboto Condensed", sans-serif;
 }
 
-.font-sec, .catalogue .catalogue__item > h2, .btn, .section-heading {
+.font-sec, .catalogue .catalogue__item > h2, .btn, .heading {
   font-family: "Bebas Neue", sans-serif;
 }
 
@@ -274,12 +347,16 @@ select {
   font-size: 1.125rem;
 }
 
-.fs-20, .btn, .body-text {
+.fs-20, .btn {
   font-size: 1.25rem;
 }
 
 .fs-24, .catalogue .catalogue__item > h2 {
   font-size: 1.5rem;
+}
+
+.fs-30 {
+  font-size: 30px;
 }
 
 .fs-32 {
@@ -294,7 +371,11 @@ select {
   font-size: 2.8125rem;
 }
 
-.fs-60, .section-heading {
+.fs-55 {
+  font-size: 55px;
+}
+
+.fs-60 {
   font-size: 3.75rem;
 }
 
@@ -302,7 +383,16 @@ select {
   font-size: 5rem;
 }
 
-.fw-norm, .catalogue .catalogue__item > h2 {
+.txt-start {
+  text-align: start;
+}
+
+.txt-square {
+  text-justify: inter-word;
+  text-align: justify;
+}
+
+.fw-norm, .catalogue .catalogue__item > h2, .heading {
   font-weight: normal;
 }
 
@@ -314,12 +404,12 @@ select {
   line-height: 1.2;
 }
 
-.clr-heading, .catalogue .catalogue__item > h2, .section-heading {
-  color: #000000;
+.clr-heading, .catalogue .catalogue__item > h2, .heading {
+  color: #252525;
 }
 
 .clr-body, .body-text {
-  color: #666666;
+  color: #5c5c5c;
 }
 
 .clr-accent {
@@ -335,7 +425,7 @@ select {
 }
 
 .bg-dark, .btn {
-  background-color: #000000;
+  background-color: #252525;
 }
 
 .egg, .btn {
@@ -352,6 +442,19 @@ select {
 
 .pointer, .btn {
   cursor: pointer;
+}
+
+@media only screen and (max-width: 968px) {
+  .fs-60 {
+    font-size: 45px;
+  }
+}
+.body-text {
+  line-height: 1.75;
+}
+
+.overlay {
+  background-color: rgba(0, 0, 0, 0.7450980392);
 }
 
 nav {
@@ -380,9 +483,12 @@ nav .nav__content > i {
 .hero {
   grid-template-columns: 30% 1fr;
   grid-column: content/full-width;
-  height: 92vh;
+  height: 90vh;
   overflow-x: hidden;
   background: linear-gradient(90deg, rgba(255, 255, 255, 0) 23.39%, rgba(255, 255, 255, 0.71) 45.37%, rgba(232, 232, 232, 0.13) 61.23%, rgba(198, 198, 198, 0.33) 76.99%);
+}
+.hero .hero__overlay {
+  display: none;
 }
 .hero .hero__text > .body-text {
   max-width: 90%;
@@ -397,7 +503,7 @@ nav .nav__content > i {
 .services > div {
   width: 50%;
 }
-.services > div:first-child p:not(:first-child, :last-child) {
+.services > div:first-child p:not(:first-child) {
   color: #FFFFFF;
   -webkit-text-stroke: 3px rgba(16, 16, 16, 0.384);
   letter-spacing: 3.2px;
@@ -416,10 +522,7 @@ nav .nav__content > i {
 }
 
 .catalogue {
-  grid-template-columns: repeat(4, 1fr);
-}
-.catalogue > div:first-child, .catalogue > div:nth-child(2) {
-  grid-column: span 2;
+  grid-template-columns: 1fr 1fr;
 }
 .catalogue > div:first-child img {
   width: 520px;
@@ -428,10 +531,14 @@ nav .nav__content > i {
 .catalogue > div:nth-child(2) p {
   width: 85%;
 }
-.catalogue > div {
+.catalogue > div:last-child {
+  grid-column: span 2;
+  grid-template-columns: repeat(5, 1fr);
+}
+.catalogue > div:not(:last-child), .catalogue div:last-child > div {
   background-color: rgba(211, 211, 211, 0.35);
 }
-.catalogue > div .arrow {
+.catalogue > div:not(:last-child) .arrow, .catalogue div:last-child > div .arrow {
   top: 30px;
   right: 35px;
   font-size: 2rem;
@@ -440,6 +547,129 @@ nav .nav__content > i {
   width: 60%;
 }
 
+.benifits {
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: auto auto;
+}
+.benifits > div {
+  grid-row: span 2;
+}
+.benifits > div h2::before {
+  content: "";
+  display: block;
+  width: 3px;
+  height: 65%;
+  background-color: #EB8921;
+}
+.benifits h1 {
+  grid-column: span 4;
+  margin-bottom: -15px;
+}
+.benifits p {
+  margin-top: -20px;
+  width: 92%;
+}
+.benifits img {
+  width: 100%;
+  aspect-ratio: 1.73;
+}
+
+.gallery {
+  grid-template-columns: repeat(6, 1fr);
+  overflow: hidden;
+}
+.gallery > div:first-child, .gallery > div:last-child {
+  background-image: url("/static/images/gallery/gallery_image_00.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  justify-self: stretch;
+  align-self: stretch;
+}
+.gallery img {
+  width: 100%;
+  aspect-ratio: 4/3;
+}
+
+.book-appointment {
+  grid-template-columns: 1fr 1fr;
+}
+.book-appointment > div:first-child > p {
+  margin-top: -10px;
+}
+.book-appointment .contact-info {
+  grid-template-columns: minmax(0, 60px) 1fr;
+}
+.book-appointment .contact-info i {
+  grid-row: span 2;
+}
+.book-appointment form {
+  grid-template-columns: 1fr 8fr;
+  margin-left: 40px;
+}
+.book-appointment form div {
+  grid-column: span 2;
+}
+.book-appointment form div input, .book-appointment form div textarea {
+  border: none;
+  background-color: #f2f2f2;
+  border-bottom: 2px solid #252525;
+}
+.book-appointment form div input {
+  height: 40px;
+}
+.book-appointment form div textarea {
+  height: 250px;
+}
+.book-appointment form a {
+  grid-column: 2;
+}
+
+@media only screen and (max-width: 1450px) {
+  .hero {
+    grid-template-columns: 1fr 45%;
+  }
+}
+@media only screen and (max-width: 60.5rem) {
+  .hero {
+    overflow-x: hidden;
+    grid-template-columns: 1fr;
+    grid-column: full-width;
+  }
+  .hero .hero__overlay {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2;
+    background-color: rgba(0, 0, 0, 0.9333333333);
+  }
+  .hero .hero__text {
+    padding-left: 5%;
+    width: min(480px + 5%, 95%);
+    z-index: 3;
+  }
+  .hero .hero__text > .body-text {
+    max-width: none;
+  }
+  .hero img {
+    position: absolute;
+    width: 750px;
+    height: auto;
+    top: 50%;
+    transform: translateY(-50%);
+    right: -375px;
+    margin-top: 0;
+    z-index: 1;
+  }
+}
+@media only screen and (max-width: 860px) {
+  .hero h1, .body-text {
+    color: #FFFFFF;
+  }
+}
 body::-webkit-scrollbar {
   width: 0.8rem;
 }

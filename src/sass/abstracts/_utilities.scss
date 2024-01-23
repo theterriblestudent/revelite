@@ -21,6 +21,10 @@
     font-size: 1.5rem;
 }
 
+.fs-30 {
+    font-size: 30px;
+}
+
 .fs-32 {
     font-size: 2rem;
 }
@@ -33,12 +37,25 @@
     font-size: 2.8125rem;
 }
 
+.fs-55 {
+    font-size: 55px;
+}
+
 .fs-60 {
     font-size: 3.75rem;
 }
 
 .fs-80 {
     font-size: 5rem;
+}
+
+.txt-start {
+    text-align: start;
+}
+
+.txt-square {
+    text-justify: inter-word;
+    text-align: justify;
 }
 
 .fw-norm {
@@ -98,4 +115,15 @@
 //behavior 
 .pointer {
     cursor: pointer;
+}
+
+
+
+
+
+//Media Qeuries 
+@media only screen and (max-width: 968px) {
+    .fs-60 {
+        font-size: 45px;
+    }
 }

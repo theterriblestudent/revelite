@@ -17,15 +17,23 @@
     @extend .pointer;
 }
 
-.section-heading {
+.heading {
     @extend .font-sec;
-    @extend .fs-60;
     @extend .clr-heading;
+
+    @extend .fw-norm;
 
 }
 
 .body-text {
     @extend .font-primary;
-    @extend .fs-20;
     @extend .clr-body;
+
+    line-height: 1.75;
 }
+
+.overlay {
+    background-color: #000000be;
+}
+
+

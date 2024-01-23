@@ -1,3 +1,5 @@
+@use "./variables";
+
 .container {
     $padding-inline: 5%;
     $content-max-width: 1450px;
@@ -33,7 +35,27 @@
 }
 
 .ai-start {
-    align-items: flex-start;
+    align-items: start;
+}
+
+.as-center {
+    align-self: center;
+}
+
+.as-stretch {
+    align-self: stretch;
+}
+
+.as-start {
+    align-self: start;
+}
+
+.js-center {
+    justify-self: center
+}
+
+.js-start {
+    justify-self: start;
 }
 
 .jc-sb {
@@ -50,6 +72,14 @@
 
 .grd {
     display: grid;
+}
+
+.subgrid-c {
+    grid-template-columns: subgrid;
+}
+
+.subgrid-r {
+    grid-template-rows: subgrid;
 }
 
 //Spacing
@@ -157,6 +187,22 @@
     margin-top: 35px;
 }
 
+.mb-50 {
+    margin-bottom: 50px;
+}
+
+.mb-80 {
+    margin-bottom: 80px;
+}
+
+.mb-120 {
+    margin-bottom: 120px;
+}
+
+.mr-10{
+    margin-right: 10px;
+}
+
 //Sizes 
 .h-fs {
     height: 100vh;
@@ -170,12 +216,19 @@
     width: 100%;
 }
 
+.h-fit {
+    width: 100%;
+}
+
 
 //Flow
 .g-5 {
     gap: 5px;
 }
 
+.g-10 {
+    gap: 10px;
+}
 
 .g-20 {
     gap: 1.25rem;
@@ -206,4 +259,27 @@
 .relative {
     position: relative;
 }
+
+.t-0 {
+    top: 0;
+}
+
+.b-0 {
+    bottom: 0;
+}
+
+.l-0 {
+    left: 0;
+}
+
+.r-0 {
+    right: 0;
+}
 //responsiveness
+
+
+@media only screen and (max-width: variables.$tablet-size) {
+    .g-15-md {
+        gap: 15px;
+    }
+}
