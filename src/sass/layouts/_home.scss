@@ -83,13 +83,6 @@
 
     & > div:not(:last-child), & div:last-child > div {
         background-color:rgba(211, 211, 211, 0.35);
-
-        .arrow {
-            top: 30px;
-            right: 35px;
-
-            font-size: 2rem;
-        }
     }
 
     .catalogue__item {
@@ -100,7 +93,7 @@
 
         @extend .relative;
 
-        @extend .pt-50;
+        @extend .pt-30;
         @extend .pb-10;
         @extend .rounded-20;
 
@@ -165,59 +158,11 @@
         background-repeat: no-repeat;
         background-size: cover;
         background-position: center;
-
-        justify-self: stretch;
-        align-self: stretch;
     }
 
     img {
         width: 100%;
         aspect-ratio: 4 / 3;
-    }
-}
-
-.book-appointment {
-    grid-template-columns: 1fr 1fr;
-
-    & > div:first-child {
-        & > p {
-            margin-top: -10px;
-        }
-    }
-
-    .contact-info {
-        grid-template-columns: minmax(0, 60px) 1fr;
-        i {
-            grid-row: span 2;
-        }
-    }
-
-    form {
-        grid-template-columns: 1fr 8fr;
-        
-        margin-left: 40px;
-
-        div {
-            grid-column: span 2;
-
-            input, textarea {
-                border: none;
-                background-color: darken(variables.$light-color, 5);
-                border-bottom: 2px solid variables.$dark-color;
-            }
-
-            input {
-                height: 40px;
-            }
-
-            textarea {
-                height: 250px;
-            }
-        }
-
-        a {
-            grid-column: 2;
-        }
     }
 }
 
@@ -247,7 +192,6 @@
 
             z-index: 2;
 
-            background-color: #000000ee;
         }
 
         .hero__text {
@@ -257,6 +201,11 @@
 
             & > .body-text {
                 max-width: none;
+            }
+
+            .btn {
+                background-color: variables.$accent-color;
+                color: variables.$dark-color;
             }
         }
         img {
@@ -272,10 +221,80 @@
             z-index: 1;
         }
     }
+
+    .services {
+
+        padding-bottom: 0;
+
+        & > div, & > div:last-child {
+            width: 100%;
+        }
+
+        & > div:last-child {
+            margin-top: 30px;
+
+            @media only screen and (max-width: 850px) {
+                flex-direction: column;
+                gap: 0px;
+            }
+
+            & > div p { width: 95%;}
+
+            & > div {
+                flex: 1;
+
+                p {
+                    width: 100%;
+                }
+            }
+        }
+
+
+    }
+
+    .benifits {
+        grid-template-columns: 1fr 1fr;
+
+        @media only screen and (max-width: 750px) {
+            grid-template-columns: 1fr;
+        }
+    };
+
+    .catalogue {
+        grid-template-columns: 1fr;
+
+        & > div:first-child {
+            display: none;
+        }
+
+        & > div:nth-child(2) {
+            grid-row: 1;
+            padding-right: 25px;
+            padding-left: 25px;
+
+            p {
+                width: 100%;
+            }
+        }
+
+        & > div:last-child {
+            grid-column: 1;
+            overflow-x: hidden;
+
+
+            .catalogue__item {
+                width: 158.25px;
+            }
+        }
+    }
 }
 
 @media only screen and (max-width: 860px) {
-    .hero h1, .body-text {
+    .hero h1, .hero .body-text {
         color: variables.$light-color;
+    }
+
+    .hero .hero__overlay {
+        background: #000000ee;
     }
 }

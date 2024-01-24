@@ -58,6 +58,10 @@
     justify-self: start;
 }
 
+.js-stretch {
+    justify-self: stretch;
+}
+
 .jc-sb {
     justify-content: space-between;
 }
@@ -203,6 +207,10 @@
     margin-right: 10px;
 }
 
+.ml-40 {
+    margin-left: 40px;
+}
+
 //Sizes 
 .h-fs {
     height: 100vh;
@@ -281,5 +289,25 @@
 @media only screen and (max-width: variables.$tablet-size) {
     .g-15-md {
         gap: 15px;
+    }
+
+    .column-md {
+        flex-direction: column;
+    }
+
+    .row-md {
+        flex-direction: row;
+    }
+
+    .flx-md {
+        display: flex;
+    }
+
+    .g-30-md {
+        gap: 30px;
+    }
+
+    .g-10-md {
+        gap: 10px;
     }
 }

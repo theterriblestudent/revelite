@@ -126,6 +126,10 @@ select {
   justify-self: start;
 }
 
+.js-stretch {
+  justify-self: stretch;
+}
+
 .jc-sb, .catalogue .catalogue__item {
   justify-content: space-between;
 }
@@ -174,7 +178,7 @@ select {
   padding-bottom: 20px;
 }
 
-.pt-30 {
+.pt-30, .catalogue .catalogue__item {
   padding-top: 30px;
 }
 
@@ -182,7 +186,7 @@ select {
   padding-bottom: 30px;
 }
 
-.pt-50, .catalogue .catalogue__item {
+.pt-50 {
   padding-top: 50px;
 }
 
@@ -262,6 +266,10 @@ select {
   margin-right: 10px;
 }
 
+.ml-40 {
+  margin-left: 40px;
+}
+
 .h-fs {
   height: 100vh;
 }
@@ -334,6 +342,21 @@ select {
   .g-15-md {
     gap: 15px;
   }
+  .column-md {
+    flex-direction: column;
+  }
+  .row-md {
+    flex-direction: row;
+  }
+  .flx-md {
+    display: flex;
+  }
+  .g-30-md {
+    gap: 30px;
+  }
+  .g-10-md {
+    gap: 10px;
+  }
 }
 .font-primary, .body-text {
   font-family: "Roboto Condensed", sans-serif;
@@ -348,15 +371,18 @@ select {
 }
 
 .fs-20, .btn {
-  font-size: 1.25rem;
+  font-size: 1.125rem;
+  font-size: clamp(1.125rem, 1.1rem + 0.125vw, 1.25rem);
 }
 
 .fs-24, .catalogue .catalogue__item > h2 {
-  font-size: 1.5rem;
+  font-size: 1.25rem;
+  font-size: clamp(1.25rem, 1.2rem + 0.25vw, 1.5rem);
 }
 
 .fs-30 {
-  font-size: 30px;
+  font-size: 1.375rem;
+  font-size: clamp(1.375rem, 1.275rem + 0.5vw, 1.875rem);
 }
 
 .fs-32 {
@@ -364,7 +390,8 @@ select {
 }
 
 .fs-36 {
-  font-size: 2.25rem;
+  font-size: 1.5625rem;
+  font-size: clamp(1.5625rem, 1.425rem + 0.6875vw, 2.25rem);
 }
 
 .fs-45 {
@@ -376,11 +403,13 @@ select {
 }
 
 .fs-60 {
-  font-size: 3.75rem;
+  font-size: 2.5rem;
+  font-size: clamp(2.5rem, 2.22rem + 1.27vw, 3.75rem);
 }
 
 .fs-80 {
-  font-size: 5rem;
+  font-size: 2.8125rem;
+  font-size: clamp(2.8125rem, 2.375rem + 2.1875vw, 5rem);
 }
 
 .txt-start {
@@ -444,11 +473,6 @@ select {
   cursor: pointer;
 }
 
-@media only screen and (max-width: 968px) {
-  .fs-60 {
-    font-size: 45px;
-  }
-}
 .body-text {
   line-height: 1.75;
 }
@@ -462,11 +486,7 @@ nav {
   top: 0;
   left: 0;
   right: 0;
-}
-@media only screen and (max-width: 60.5rem) {
-  nav .nav__content div {
-    display: none;
-  }
+  z-index: 4;
 }
 nav .nav__content div div:hover > * {
   color: #EB8921;
@@ -474,12 +494,20 @@ nav .nav__content div div:hover > * {
 nav .nav__content > i {
   display: none;
 }
+
 @media only screen and (max-width: 60.5rem) {
+  nav .nav__content div {
+    display: none;
+  }
   nav .nav__content > i {
     display: block;
   }
 }
-
+@media only screen and (max-width: 860px) {
+  nav .nav__content .branding, nav .nav__content > i {
+    color: #FFFFFF;
+  }
+}
 .hero {
   grid-template-columns: 30% 1fr;
   grid-column: content/full-width;
@@ -538,11 +566,6 @@ nav .nav__content > i {
 .catalogue > div:not(:last-child), .catalogue div:last-child > div {
   background-color: rgba(211, 211, 211, 0.35);
 }
-.catalogue > div:not(:last-child) .arrow, .catalogue div:last-child > div .arrow {
-  top: 30px;
-  right: 35px;
-  font-size: 2rem;
-}
 .catalogue .catalogue__item > img {
   width: 60%;
 }
@@ -583,46 +606,10 @@ nav .nav__content > i {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  justify-self: stretch;
-  align-self: stretch;
 }
 .gallery img {
   width: 100%;
   aspect-ratio: 4/3;
-}
-
-.book-appointment {
-  grid-template-columns: 1fr 1fr;
-}
-.book-appointment > div:first-child > p {
-  margin-top: -10px;
-}
-.book-appointment .contact-info {
-  grid-template-columns: minmax(0, 60px) 1fr;
-}
-.book-appointment .contact-info i {
-  grid-row: span 2;
-}
-.book-appointment form {
-  grid-template-columns: 1fr 8fr;
-  margin-left: 40px;
-}
-.book-appointment form div {
-  grid-column: span 2;
-}
-.book-appointment form div input, .book-appointment form div textarea {
-  border: none;
-  background-color: #f2f2f2;
-  border-bottom: 2px solid #252525;
-}
-.book-appointment form div input {
-  height: 40px;
-}
-.book-appointment form div textarea {
-  height: 250px;
-}
-.book-appointment form a {
-  grid-column: 2;
 }
 
 @media only screen and (max-width: 1450px) {
@@ -644,7 +631,6 @@ nav .nav__content > i {
     right: 0;
     bottom: 0;
     z-index: 2;
-    background-color: rgba(0, 0, 0, 0.9333333333);
   }
   .hero .hero__text {
     padding-left: 5%;
@@ -653,6 +639,10 @@ nav .nav__content > i {
   }
   .hero .hero__text > .body-text {
     max-width: none;
+  }
+  .hero .hero__text .btn {
+    background-color: #EB8921;
+    color: #252525;
   }
   .hero img {
     position: absolute;
@@ -664,12 +654,105 @@ nav .nav__content > i {
     margin-top: 0;
     z-index: 1;
   }
-}
-@media only screen and (max-width: 860px) {
-  .hero h1, .body-text {
-    color: #FFFFFF;
+  .services {
+    padding-bottom: 0;
+  }
+  .services > div, .services > div:last-child {
+    width: 100%;
+  }
+  .services > div:last-child {
+    margin-top: 30px;
   }
 }
+@media only screen and (max-width: 60.5rem) and (max-width: 850px) {
+  .services > div:last-child {
+    flex-direction: column;
+    gap: 0px;
+  }
+}
+@media only screen and (max-width: 60.5rem) {
+  .services > div:last-child > div p {
+    width: 95%;
+  }
+  .services > div:last-child > div {
+    flex: 1;
+  }
+  .services > div:last-child > div p {
+    width: 100%;
+  }
+  .benifits {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media only screen and (max-width: 60.5rem) and (max-width: 750px) {
+  .benifits {
+    grid-template-columns: 1fr;
+  }
+}
+@media only screen and (max-width: 60.5rem) {
+  .catalogue {
+    grid-template-columns: 1fr;
+  }
+  .catalogue > div:first-child {
+    display: none;
+  }
+  .catalogue > div:nth-child(2) {
+    grid-row: 1;
+    padding-right: 25px;
+    padding-left: 25px;
+  }
+  .catalogue > div:nth-child(2) p {
+    width: 100%;
+  }
+  .catalogue > div:last-child {
+    grid-column: 1;
+    overflow-x: hidden;
+  }
+  .catalogue > div:last-child .catalogue__item {
+    width: 158.25px;
+  }
+}
+@media only screen and (max-width: 860px) {
+  .hero h1, .hero .body-text {
+    color: #FFFFFF;
+  }
+  .hero .hero__overlay {
+    background: rgba(0, 0, 0, 0.9333333333);
+  }
+}
+.book-appointment {
+  grid-template-columns: 1fr 1fr;
+}
+.book-appointment > div:first-child > p {
+  margin-top: -10px;
+}
+.book-appointment .contact-info {
+  grid-template-columns: minmax(0, 60px) 1fr;
+}
+.book-appointment .contact-info i {
+  grid-row: span 2;
+}
+.book-appointment form {
+  grid-template-columns: 1fr 8fr;
+}
+.book-appointment form div {
+  grid-column: span 2;
+}
+.book-appointment form div input, .book-appointment form div textarea {
+  border: none;
+  background-color: #f2f2f2;
+  border-bottom: 2px solid #252525;
+}
+.book-appointment form div input {
+  height: 40px;
+}
+.book-appointment form div textarea {
+  height: 250px;
+}
+.book-appointment form a {
+  grid-column: 2;
+}
+
 body::-webkit-scrollbar {
   width: 0.8rem;
 }

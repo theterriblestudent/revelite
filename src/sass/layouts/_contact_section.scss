@@ -1,0 +1,44 @@
+@use "../abstracts/variables";
+
+.book-appointment {
+    grid-template-columns: 1fr 1fr;
+
+    & > div:first-child {
+        & > p {
+            margin-top: -10px;
+        }
+    }
+
+    .contact-info {
+        grid-template-columns: minmax(0, 60px) 1fr;
+        i {
+            grid-row: span 2;
+        }
+    }
+
+    form {
+        grid-template-columns: 1fr 8fr;
+
+        div {
+            grid-column: span 2;
+
+            input, textarea {
+                border: none;
+                background-color: darken(variables.$light-color, 5);
+                border-bottom: 2px solid variables.$dark-color;
+            }
+
+            input {
+                height: 40px;
+            }
+
+            textarea {
+                height: 250px;
+            }
+        }
+
+        a {
+            grid-column: 2;
+        }
+    }
+}

@@ -5,13 +5,10 @@ nav {
     left: 0;
     right: 0;
 
+    z-index: 4;
+
     .nav__content {
         div {
-
-            @media only screen and (max-width: variables.$tablet-size) {
-                display: none;
-            }
-
             div:hover > * {
                 color: variables.$accent-color;
             }
@@ -19,11 +16,30 @@ nav {
 
         & > i {
             display: none;
+        }
+    }
+}
 
-            @media only screen and (max-width: variables.$tablet-size) {
-                display: block;
+@media only screen and (max-width: variables.$tablet-size) {
+    nav {
+        .nav__content {
+            div {
+                display: none;
             }
 
+            & > i {
+                display: block;
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 860px) {
+    nav {
+        .nav__content {
+            .branding, & > i {
+                color: variables.$light-color;
+            }
         }
     }
 }
