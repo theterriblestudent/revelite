@@ -112,40 +112,47 @@
 }
 
 .benifits {
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: auto auto;
+    grid-template-columns: 2fr 3fr;
 
     & > div {
-        grid-row: span 2;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto auto;
 
-        h2 {
-            &::before {
-                content: '';
 
-                display: block;
+        & > div {
+            grid-row: span 2;
 
-                width: 3px;
-                height: 65%;
+            h2 {
+                &::before {
+                    content: '';
+    
+                    display: block;
+    
+                    width: 3px;
+                    height: 65%;
+    
+                    background-color: variables.$accent-color;
+                }
+            }
 
-                background-color: variables.$accent-color;
+            p {
+                margin-top: -60px;
+                width: 92%;
             }
         }
-    }
 
-    h1 {
-        grid-column: span 4;
-        margin-bottom: -15px;
-    }
-    p {
-        margin-top: -20px;
-        width: 92%;
-    }
+        @media only screen and (max-width: 700px) {
+            grid-template-columns: 1fr 1fr 1fr 1fr;
 
-    img {
-        width: 100%;
-        aspect-ratio: 1.73;
-    }
-    
+            overflow-x: scroll;
+
+            column-gap: 25px;
+
+            & > div {
+                min-width: 280px;
+            }
+        }
+    } 
 }
 
 .gallery {
@@ -253,11 +260,7 @@
     }
 
     .benifits {
-        grid-template-columns: 1fr 1fr;
-
-        @media only screen and (max-width: 750px) {
-            grid-template-columns: 1fr;
-        }
+        grid-template-columns: 1fr;
     };
 
     .catalogue {
@@ -285,6 +288,19 @@
             .catalogue__item {
                 width: 158.25px;
             }
+        }
+    }
+
+    .gallery {
+        grid-template-columns: repeat(5, 1fr);
+        overflow-x: hidden;
+
+        & > img:nth-child(2), & >img:nth-child(3), & > img:nth-child(4) {
+            display: none;
+        }
+
+        & > img {
+            min-width: 120px;
         }
     }
 }

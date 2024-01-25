@@ -42,3 +42,22 @@
         }
     }
 }
+
+
+@media only screen and (max-width: variables.$tablet-size) {
+    .book-appointment {
+        grid-template-columns: 1fr;
+    }
+
+    form.ml-40 {
+        margin-left: 0;
+
+        & > div {
+            grid-template-columns: 1fr;
+        };
+
+        & > a.btn {
+            grid-column: 1;
+        }
+    }
+}

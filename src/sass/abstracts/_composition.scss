@@ -259,6 +259,14 @@
     gap: 6.25rem;
 }
 
+.rg-60 {
+    row-gap: 60px;
+}
+
+.cg-80 {
+    column-gap: 80px;
+}
+
 //Position
 .absolute {
     position: absolute;
@@ -309,5 +317,31 @@
 
     .g-10-md {
         gap: 10px;
+    }
+
+    .g-15-md {
+        gap: 15px;
+    }
+
+    .as-start-md {
+        align-self: start;
+    }
+
+    .js-start-md {
+        justify-self: start;
+    }
+
+    .js-stretch-md {
+        justify-self: stretch;
+    } 
+
+    .mb-60-md {
+        margin-bottom: 60px;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    .g-15-sd {
+        gap: 15px;
     }
 }
