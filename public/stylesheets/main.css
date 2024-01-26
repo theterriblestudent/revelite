@@ -497,7 +497,7 @@ nav .nav__content div div:hover > * {
 }
 
 .clr-heading, .heading {
-  color: #252525;
+  color: #080808;
 }
 
 .clr-body, .body-text {
@@ -517,7 +517,7 @@ nav .nav__content div div:hover > * {
 }
 
 .bg-dark, .btn {
-  background-color: #252525;
+  background-color: #080808;
 }
 
 .egg, .btn {
@@ -589,6 +589,29 @@ nav .nav__content div div:hover > * {
   background-color: #EB8921;
 }
 
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+.part-brands div {
+  animation: scroll 15s linear infinite;
+  flex-shrink: 0;
+}
+.part-brands div img {
+  width: 160px;
+  height: auto;
+  margin: 0 45px;
+}
+@media only screen and (max-width: 450px) {
+  .part-brands div img {
+    margin: 0 20px;
+  }
+}
+
 .catalogue {
   grid-template-columns: 1fr 1fr;
 }
@@ -602,6 +625,7 @@ nav .nav__content div div:hover > * {
 .catalogue > div:last-child {
   grid-column: span 2;
   grid-template-columns: repeat(5, 1fr);
+  position: relative;
 }
 .catalogue > div:not(:last-child), .catalogue div:last-child > div {
   background-color: rgba(211, 211, 211, 0.3490196078);
@@ -692,7 +716,7 @@ nav .nav__content div div:hover > * {
   }
   .hero .hero__text .btn {
     background-color: #EB8921;
-    color: #252525;
+    color: #080808;
   }
   .hero img {
     position: absolute;
@@ -771,6 +795,14 @@ nav .nav__content div div:hover > * {
     display: block;
   }
 }
+@media only screen and (max-width: 450px) {
+  .hero {
+    height: 80vh;
+  }
+  .hero .hero__text {
+    margin-top: 60px;
+  }
+}
 .book-appointment {
   grid-template-columns: 1fr 1fr;
 }
@@ -791,7 +823,7 @@ nav .nav__content div div:hover > * {
 }
 .book-appointment form div input, .book-appointment form div textarea {
   background-color: #f2f2f2;
-  border-bottom: 2px solid #252525;
+  border-bottom: 2px solid #080808;
 }
 .book-appointment form div input {
   height: 40px;

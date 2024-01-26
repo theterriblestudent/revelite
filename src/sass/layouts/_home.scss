@@ -55,6 +55,32 @@
     }
 }
 
+@keyframes scroll {
+ 0% {
+    transform: translateX(0);
+ }
+ 100% {
+    transform: translateX(-100%);
+ }
+}
+
+.part-brands {
+    div {
+        animation: scroll 15s linear infinite;
+        flex-shrink: 0;
+        img {
+            width: 160px;
+            height: auto;
+            margin: 0 45px;
+
+            @media only screen and (max-width: 450px) {
+                margin: 0 20px;
+            }
+        }
+    }
+}
+
+
 .catalogue {
     grid-template-columns: 1fr 1fr;
     & > div:first-child {
@@ -73,6 +99,8 @@
     & > div:last-child {
         grid-column: span 2;
         grid-template-columns: repeat(5, 1fr);
+        position: relative;
+
     }
     
     & > div:not(:last-child), & div:last-child > div {
@@ -278,5 +306,15 @@
     .hero .hero__overlay {
         background: #000000ee;
         display: block;
+    }
+}
+
+@media only screen and (max-width: 450px) {
+    .hero {
+        height: 80vh;
+
+        .hero__text {
+            margin-top: 60px;
+        }
     }
 }
