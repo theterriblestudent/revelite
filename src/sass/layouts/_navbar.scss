@@ -1,34 +1,12 @@
 @use "../abstracts/variables";
 nav {
     height: 100px;
-    top: 0;
-    left: 0;
-    right: 0;
-
     z-index: 4;
 
     .nav__content {
         div {
             div:hover > * {
                 color: variables.$accent-color;
-            }
-        }
-
-        & > i {
-            display: none;
-        }
-    }
-}
-
-@media only screen and (max-width: variables.$tablet-size) {
-    nav {
-        .nav__content {
-            div {
-                display: none;
-            }
-
-            & > i {
-                display: block;
             }
         }
     }

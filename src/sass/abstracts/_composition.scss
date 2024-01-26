@@ -3,9 +3,7 @@
 .container {
     $padding-inline: 5%;
     $content-max-width: 1450px;
-
     display: grid;
-
     grid-template-columns: [full-width-start] minmax($padding-inline, 1fr) [content-start] min(100% - (2 * $padding-inline), $content-max-width) [content-end] minmax($padding-inline, 1fr) [full-width-end];
 }
 
@@ -18,6 +16,16 @@
 }
 
 //layout
+.block {
+    display: block;
+}
+
+.none {
+    display: none;
+}
+
+//FLEXBOX
+
 .flx {
     display: flex;
 }
@@ -73,6 +81,8 @@
 .jc-center {
     justify-content: center;
 }
+
+//GRID
 
 .grd {
     display: grid;
@@ -203,6 +213,8 @@
     margin-bottom: 120px;
 }
 
+
+//HORIZONTAL
 .mr-10{
     margin-right: 10px;
 }
@@ -250,7 +262,6 @@
     gap: 40px;
 }
 
-
 .g-60 {
     gap: 3.75rem;
 }
@@ -295,8 +306,12 @@
 
 
 @media only screen and (max-width: variables.$tablet-size) {
-    .g-15-md {
-        gap: 15px;
+    .block-md {
+        display: block;
+    }
+
+    .flx-md {
+        display: flex;
     }
 
     .column-md {
@@ -305,22 +320,6 @@
 
     .row-md {
         flex-direction: row;
-    }
-
-    .flx-md {
-        display: flex;
-    }
-
-    .g-30-md {
-        gap: 30px;
-    }
-
-    .g-10-md {
-        gap: 10px;
-    }
-
-    .g-15-md {
-        gap: 15px;
     }
 
     .as-start-md {
@@ -333,11 +332,41 @@
 
     .js-stretch-md {
         justify-self: stretch;
-    } 
+    }
+
+    .g-10-md {
+        gap: 10px;
+    }
+
+    .g-15-md {
+        gap: 15px;
+    }
+
+
+    .g-30-md {
+        gap: 30px;
+    }
+
+    .pl-25-md {
+        padding-left: 25px;
+    }
+
+    .pr-25-md {
+        padding-right: 25px;
+    }
+    
+    .mt-30-md {
+        margin-top: 30px;
+    }
 
     .mb-60-md {
         margin-bottom: 60px;
     }
+
+    .none-md {
+        display: none;
+    }
+
 }
 
 @media only screen and (max-width: 500px) {

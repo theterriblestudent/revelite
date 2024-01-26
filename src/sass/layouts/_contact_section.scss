@@ -23,7 +23,6 @@
             grid-column: span 2;
 
             input, textarea {
-                border: none;
                 background-color: darken(variables.$light-color, 5);
                 border-bottom: 2px solid variables.$dark-color;
             }
@@ -31,7 +30,7 @@
             input {
                 height: 40px;
             }
-
+            
             textarea {
                 height: 250px;
             }

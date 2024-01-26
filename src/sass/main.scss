@@ -1,7 +1,8 @@
 @use './base/resets';
-@use './abstracts/abstracts';
-@use './componets/components';
 @use './layouts/layouts';
+@use './componets/components';
+@use './abstracts/abstracts';
+
 
 //Scrollbar Styling 
 body::-webkit-scrollbar {
