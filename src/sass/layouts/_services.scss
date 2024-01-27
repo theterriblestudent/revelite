@@ -1,12 +1,34 @@
+@use "../abstracts/variables";
+
 .services-showcase {
     background: url("/static/images/benifit_3.jpg") no-repeat center/cover;
     margin-top: 100px;
+
+    @media only screen and (max-width: 860px) {
+        margin-top: 0;
+        padding-top: 190px
+    }
+
+    @media only screen and (max-width: 500px) {
+        padding-top: 130px;
+    }
 }
 
 .services-section {
+    h1 {
+        font-size: 35px;
+    }
     & > div {
         grid-template-columns: repeat(4, 1fr);
         grid-template-rows: auto auto auto;
+
+        @media only screen and (max-width: 1065px) {
+            gap: 20px;
+
+            div {
+                min-width: 220px
+            }
+        }
 
         div {
             grid-row: span 3;
@@ -27,9 +49,59 @@
     }
 }
 
+
 .services-brands {
-    grid-template-columns: 2fr 3fr;
-    margin-bottom: 180px;
+    margin-bottom: 150px;
+
+    & > div {
+        grid-template-columns: 2fr 3fr;
+
+    h1 {
+        max-width: 250px;
+    }
+
+    .brands-carousels {
+        &::before, &::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 40px;
+
+            z-index: 2;
+        }
+
+        &::before {
+            left: 0;
+            background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(variables.$dark-color), to(rgba(0, 0, 0, 0)));
+            background: -webkit-linear-gradient(left, variables.$dark-color, rgba(0, 0, 0, 0));
+            background: -moz-linear-gradient(left, variables.$dark-color, rgba(0, 0, 0, 0));
+            background: -ms-linear-gradient(left, variables.$dark-color, rgba(0, 0, 0, 0));
+            background: -o-linear-gradient(left, variables.$dark-color, rgba(0, 0, 0, 0));
+            background: linear-gradient(left, variables.$dark-color, rgba(0, 0, 0, 0));
+        }
+
+        &:after {
+            right: -3px;
+            background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(0, 0, 0, 0)), to(variables.$dark-color));
+            background: -webkit-linear-gradient(right, variables.$dark-color, rgba(0, 0, 0, 0));
+            background: -moz-linear-gradient(right, variables.$dark-color, rgba(0, 0, 0, 0));
+            background: -ms-linear-gradient(right, variables.$dark-color, rgba(0, 0, 0, 0));
+            background: -o-linear-gradient(right, variables.$dark-color, rgba(0, 0, 0, 0));
+            background: linear-gradient(right, variables.$dark-color, rgba(0, 0, 0, 0));
+        }
+    }
+
+
+    @media only screen and (max-width: 1050px) {
+        grid-template-columns: 1fr;
+
+        h1 {
+            max-width: none;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+    }
 
     $padding-inline: 60px;
     $padding-block: 70px;
@@ -42,15 +114,27 @@
         left: calc(-1 * $padding-inline);
     }
 
-    h1 {
-        max-width: 250px;
-    }
-
     .brands-carousels {
+        .slider-track {
+            overflow-x: hidden;
+        
+            .slider {
+                animation: scroll 15s linear infinite;
+                flex-shrink: 0;
+            }
+
+            &:nth-child(2) .slider {
+                animation-direction: reverse;
+            }
+        }
         img {
-            width: 90px
+            width: 90px;
+            margin: 0 25px;
         }
     }
+
+    }
+    
 }
 
 .testimonial-section {
@@ -60,19 +144,35 @@
         max-width: 350px;
     }
 
+    @media only screen and (max-width: 1050px) {
+        grid-template-columns: 1fr;
+
+        h1 {
+            max-width: none;
+            margin-bottom: 45px;
+            text-align: center;
+        }
+
+        & > div {
+            max-width: 800px;
+            justify-self: center;
+        }
+    }
+
+
     & > div {
         span {
             position: absolute;
             font-size: 95px;
 
             &:first-child {
-                top: -60px;
-                left: -60px;
+                top: -90px;
+                left: 0px;
             }
 
             &:nth-child(2) {
                 bottom: -5px;
-                right: -20px;
+                right: 0px;
             }
         }
         & > div {
@@ -84,3 +184,14 @@
     }
 }
 
+@media only screen and (max-width: variables.$tablet-size) {
+    .services-benifit-section {
+        h1 {
+            max-width: none;
+        }
+    }
+
+    .services-brands {
+        margin-bottom: 80px;
+    }
+}

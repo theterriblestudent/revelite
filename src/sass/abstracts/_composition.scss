@@ -231,6 +231,10 @@
     margin-right: 10px;
 }
 
+.mr-30 {
+    margin-right: 30px;
+}
+
 .mr-50 {
     margin-right: 50px;
 }
@@ -367,6 +371,14 @@
         gap: 30px;
     }
 
+    .pt-50-md {
+        padding-top: 50px;
+    }
+
+    .pb-50-md {
+        padding-bottom: 50px;
+    }
+
     .pl-25-md {
         padding-left: 25px;
     }
@@ -379,8 +391,16 @@
         margin-top: 30px;
     }
 
+    .mb-40-md {
+        margin-bottom: 40px;
+    }
+
     .mb-60-md {
         margin-bottom: 60px;
+    }
+
+    .mb-80-md {
+        margin-bottom: 80px;
     }
 
     .none-md {
@@ -392,5 +412,13 @@
 @media only screen and (max-width: 500px) {
     .g-15-sd {
         gap: 15px;
+    }
+
+    .pt-30-sd {
+        padding-top: 30px;
+    }
+
+    .pb-30-sd {
+        padding-bottom: 30px;;
     }
 }

@@ -9,6 +9,14 @@ nav {
                 color: variables.$accent-color;
             }
         }
+
+        & > i  {
+            display: none !important;
+            
+            @media only screen and (max-width: variables.$tablet-size) {
+                display: block !important;
+            }
+        }
     }
 }
 

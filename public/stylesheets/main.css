@@ -80,6 +80,14 @@ nav {
 nav .nav__content div div:hover > * {
   color: #EB8921;
 }
+nav .nav__content > i {
+  display: none !important;
+}
+@media only screen and (max-width: 60.5rem) {
+  nav .nav__content > i {
+    display: block !important;
+  }
+}
 
 @media only screen and (max-width: 860px) {
   nav .nav__content .branding, nav .nav__content > i {
@@ -299,6 +307,10 @@ nav .nav__content div div:hover > * {
   margin-right: 10px;
 }
 
+.mr-30 {
+  margin-right: 30px;
+}
+
 .mr-50 {
   margin-right: 50px;
 }
@@ -418,6 +430,12 @@ nav .nav__content div div:hover > * {
   .g-30-md {
     gap: 30px;
   }
+  .pt-50-md {
+    padding-top: 50px;
+  }
+  .pb-50-md {
+    padding-bottom: 50px;
+  }
   .pl-25-md {
     padding-left: 25px;
   }
@@ -427,8 +445,14 @@ nav .nav__content div div:hover > * {
   .mt-30-md {
     margin-top: 30px;
   }
+  .mb-40-md {
+    margin-bottom: 40px;
+  }
   .mb-60-md {
     margin-bottom: 60px;
+  }
+  .mb-80-md {
+    margin-bottom: 80px;
   }
   .none-md {
     display: none;
@@ -437,6 +461,12 @@ nav .nav__content div div:hover > * {
 @media only screen and (max-width: 500px) {
   .g-15-sd {
     gap: 15px;
+  }
+  .pt-30-sd {
+    padding-top: 30px;
+  }
+  .pb-30-sd {
+    padding-bottom: 30px;
   }
 }
 .font-primary, .body-text {
@@ -468,7 +498,8 @@ nav .nav__content div div:hover > * {
 }
 
 .fs-32 {
-  font-size: 2rem;
+  font-size: 1.375rem;
+  font-size: clamp(1.375rem, 1.16rem + 0.93vw, 2rem);
 }
 
 .fs-36 {
@@ -831,10 +862,32 @@ nav .nav__content div div:hover > * {
   background: url("/static/images/benifit_3.jpg") no-repeat center/cover;
   margin-top: 100px;
 }
+@media only screen and (max-width: 860px) {
+  .services-showcase {
+    margin-top: 0;
+    padding-top: 190px;
+  }
+}
+@media only screen and (max-width: 500px) {
+  .services-showcase {
+    padding-top: 130px;
+  }
+}
 
+.services-section h1 {
+  font-size: 35px;
+}
 .services-section > div {
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: auto auto auto;
+}
+@media only screen and (max-width: 1065px) {
+  .services-section > div {
+    gap: 20px;
+  }
+  .services-section > div div {
+    min-width: 220px;
+  }
 }
 .services-section > div div {
   grid-row: span 3;
@@ -850,20 +903,69 @@ nav .nav__content div div:hover > * {
 }
 
 .services-brands {
-  grid-template-columns: 2fr 3fr;
-  margin-bottom: 180px;
+  margin-bottom: 150px;
 }
-.services-brands .background {
+.services-brands > div {
+  grid-template-columns: 2fr 3fr;
+}
+.services-brands > div h1 {
+  max-width: 250px;
+}
+.services-brands > div .brands-carousels::before, .services-brands > div .brands-carousels::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 40px;
+  z-index: 2;
+}
+.services-brands > div .brands-carousels::before {
+  left: 0;
+  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#080808), to(rgba(0, 0, 0, 0)));
+  background: -webkit-linear-gradient(left, #080808, rgba(0, 0, 0, 0));
+  background: -moz-linear-gradient(left, #080808, rgba(0, 0, 0, 0));
+  background: -ms-linear-gradient(left, #080808, rgba(0, 0, 0, 0));
+  background: -o-linear-gradient(left, #080808, rgba(0, 0, 0, 0));
+  background: linear-gradient(left, #080808, rgba(0, 0, 0, 0));
+}
+.services-brands > div .brands-carousels:after {
+  right: -3px;
+  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(0, 0, 0, 0)), to(#080808));
+  background: -webkit-linear-gradient(right, #080808, rgba(0, 0, 0, 0));
+  background: -moz-linear-gradient(right, #080808, rgba(0, 0, 0, 0));
+  background: -ms-linear-gradient(right, #080808, rgba(0, 0, 0, 0));
+  background: -o-linear-gradient(right, #080808, rgba(0, 0, 0, 0));
+  background: linear-gradient(right, #080808, rgba(0, 0, 0, 0));
+}
+@media only screen and (max-width: 1050px) {
+  .services-brands > div {
+    grid-template-columns: 1fr;
+  }
+  .services-brands > div h1 {
+    max-width: none;
+    text-align: center;
+    margin-bottom: 30px;
+  }
+}
+.services-brands > div .background {
   width: calc(100% + 120px);
   height: calc(100% + 140px);
   top: -70px;
   left: -60px;
 }
-.services-brands h1 {
-  max-width: 250px;
+.services-brands > div .brands-carousels .slider-track {
+  overflow-x: hidden;
 }
-.services-brands .brands-carousels img {
+.services-brands > div .brands-carousels .slider-track .slider {
+  animation: scroll 15s linear infinite;
+  flex-shrink: 0;
+}
+.services-brands > div .brands-carousels .slider-track:nth-child(2) .slider {
+  animation-direction: reverse;
+}
+.services-brands > div .brands-carousels img {
   width: 90px;
+  margin: 0 25px;
 }
 
 .testimonial-section {
@@ -872,23 +974,45 @@ nav .nav__content div div:hover > * {
 .testimonial-section h1 {
   max-width: 350px;
 }
+@media only screen and (max-width: 1050px) {
+  .testimonial-section {
+    grid-template-columns: 1fr;
+  }
+  .testimonial-section h1 {
+    max-width: none;
+    margin-bottom: 45px;
+    text-align: center;
+  }
+  .testimonial-section > div {
+    max-width: 800px;
+    justify-self: center;
+  }
+}
 .testimonial-section > div span {
   position: absolute;
   font-size: 95px;
 }
 .testimonial-section > div span:first-child {
-  top: -60px;
-  left: -60px;
+  top: -90px;
+  left: 0px;
 }
 .testimonial-section > div span:nth-child(2) {
   bottom: -5px;
-  right: -20px;
+  right: 0px;
 }
 .testimonial-section > div > div div {
   width: 30px;
   height: 3px;
 }
 
+@media only screen and (max-width: 60.5rem) {
+  .services-benifit-section h1 {
+    max-width: none;
+  }
+  .services-brands {
+    margin-bottom: 80px;
+  }
+}
 .book-appointment {
   grid-template-columns: 1fr 1fr;
 }
