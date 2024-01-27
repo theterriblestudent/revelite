@@ -20,6 +20,13 @@ app.get('/', (req, res) => {
 });
 
 
+app.get('/services', (req, res) => {
+    res.render('services', {
+        title: "Services"
+    });
+})
+
+
 console.log();
 
 app.listen(5000, () => console.log("Server running on port 5000"));

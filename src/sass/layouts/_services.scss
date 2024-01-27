@@ -1,0 +1,86 @@
+.services-showcase {
+    background: url("/static/images/benifit_3.jpg") no-repeat center/cover;
+    margin-top: 100px;
+}
+
+.services-section {
+    & > div {
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: auto auto auto;
+
+        div {
+            grid-row: span 3;
+
+            img {
+                width: 100%;
+                aspect-ratio: 4 / 2;
+                object-fit: cover;
+            }
+        }
+    }
+
+}
+
+.services-benifit-section {
+    h1 {
+        max-width: 250px;
+    }
+}
+
+.services-brands {
+    grid-template-columns: 2fr 3fr;
+    margin-bottom: 180px;
+
+    $padding-inline: 60px;
+    $padding-block: 70px;
+
+    .background {
+        width: calc(100% + (2 * $padding-inline));
+        height: calc(100% + (2 * $padding-block));
+
+        top: calc(-1 * $padding-block);
+        left: calc(-1 * $padding-inline);
+    }
+
+    h1 {
+        max-width: 250px;
+    }
+
+    .brands-carousels {
+        img {
+            width: 90px
+        }
+    }
+}
+
+.testimonial-section {
+    grid-template-columns: 2fr 3fr;
+
+    h1 {
+        max-width: 350px;
+    }
+
+    & > div {
+        span {
+            position: absolute;
+            font-size: 95px;
+
+            &:first-child {
+                top: -60px;
+                left: -60px;
+            }
+
+            &:nth-child(2) {
+                bottom: -5px;
+                right: -20px;
+            }
+        }
+        & > div {
+                div {
+                    width: 30px;
+                    height: 3px;
+                }
+        }
+    }
+}
+

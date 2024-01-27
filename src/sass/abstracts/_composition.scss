@@ -148,6 +148,14 @@
     padding-bottom: 70px;
 }
 
+.pt-90 {
+    padding-top: 90px;
+}
+
+.pb-90 {
+    padding-bottom: 90px;
+}
+
 
 //Horizantal
 .pl-25 {
@@ -201,6 +209,10 @@
     margin-top: 35px;
 }
 
+.mt-60 {
+    margin-top: 60px;
+}
+
 .mb-50 {
     margin-bottom: 50px;
 }
@@ -217,6 +229,10 @@
 //HORIZONTAL
 .mr-10{
     margin-right: 10px;
+}
+
+.mr-50 {
+    margin-right: 50px;
 }
 
 .ml-40 {
@@ -237,7 +253,7 @@
 }
 
 .h-fit {
-    width: 100%;
+    height: 100%;
 }
 
 
@@ -260,6 +276,10 @@
 
 .g-40 {
     gap: 40px;
+}
+
+.g-50 {
+    gap: 50px;
 }
 
 .g-60 {
