@@ -58,12 +58,20 @@
     align-self: start;
 }
 
+.as-end {
+    align-self: end;
+}
+
 .js-center {
     justify-self: center
 }
 
 .js-start {
     justify-self: start;
+}
+
+.js-end {
+    justify-self: end;
 }
 
 .js-stretch {
@@ -354,6 +362,10 @@
         justify-self: start;
     }
 
+    .js-center-md {
+        justify-self: center;
+    }
+
     .js-stretch-md {
         justify-self: stretch;
     }
@@ -366,9 +378,12 @@
         gap: 15px;
     }
 
-
     .g-30-md {
         gap: 30px;
+    }
+
+    .g-50-md {
+        gap: 50px;
     }
 
     .pt-50-md {

@@ -147,12 +147,20 @@ nav .nav__content > i {
   align-self: start;
 }
 
+.as-end {
+  align-self: end;
+}
+
 .js-center {
   justify-self: center;
 }
 
 .js-start {
   justify-self: start;
+}
+
+.js-end {
+  justify-self: end;
 }
 
 .js-stretch {
@@ -418,6 +426,9 @@ nav .nav__content > i {
   .js-start-md {
     justify-self: start;
   }
+  .js-center-md {
+    justify-self: center;
+  }
   .js-stretch-md {
     justify-self: stretch;
   }
@@ -429,6 +440,9 @@ nav .nav__content > i {
   }
   .g-30-md {
     gap: 30px;
+  }
+  .g-50-md {
+    gap: 50px;
   }
   .pt-50-md {
     padding-top: 50px;
@@ -1011,6 +1025,50 @@ nav .nav__content > i {
   }
   .services-brands {
     margin-bottom: 80px;
+  }
+}
+.description {
+  grid-template-columns: 1fr 1fr;
+}
+.description__tagline p:first-child {
+  max-width: 500px;
+  line-height: 1.1;
+  color: transparent;
+  -webkit-text-stroke: 2px #555555;
+}
+.description__tagline p:last-child span {
+  color: #EB8921;
+}
+
+.team {
+  grid-template-columns: 1fr 1fr;
+}
+.team__description h1 {
+  max-width: 480px;
+}
+.team img {
+  width: clamp(16.25rem, 12.21rem + 18.5vw, 34.375rem);
+  max-width: 550px;
+}
+
+.map {
+  width: 100%;
+  aspect-ratio: 7/1;
+  height: auto;
+  min-height: 210px;
+  object-fit: cover;
+  object-position: center;
+}
+
+@media only screen and (max-width: 60.5rem) {
+  .description {
+    grid-template-columns: 1fr;
+  }
+  .team {
+    grid-template-columns: 1fr;
+  }
+  .team__description h1 {
+    max-width: none;
   }
 }
 .book-appointment {
