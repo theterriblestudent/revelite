@@ -123,7 +123,6 @@
             grid-template-rows: auto auto;
             column-gap: 100px;
             row-gap: 60px;
-    
             & > div {
                 grid-row: span 2;
                 h2 {
@@ -143,14 +142,26 @@
             }
     
             @media only screen and (max-width: 700px) {
-                grid-template-columns: 1fr 1fr 1fr 1fr;
+                grid-template-columns: 1fr;
                 column-gap: 25px;
 
                 & > div {
-                    min-width: 280px;
+                    width: 280px;
+                    justify-items: center;
+                    justify-self: center;
+
+                    p, h2 {
+                        text-align: center;
+                    }
                 }
             }
         } 
+    }
+    @media only screen and (max-width: 700px) {
+        h1 {
+            justify-content: center;
+            text-align: center;
+        }
     }
 }
 @container my-container (inline-size < 700px) {
@@ -229,7 +240,7 @@
 
     .services {
         grid-column: content / full-width !important;
-        padding-bottom: 0;
+        padding-bottom: 10px;
         & > div, & > div:last-child {
             width: 100%;
         }
@@ -263,6 +274,7 @@
 
     .benifits {
         grid-template-columns: 1fr;
+
     };
 
     .catalogue {

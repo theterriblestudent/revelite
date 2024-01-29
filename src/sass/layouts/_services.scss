@@ -17,16 +17,31 @@
 .services-section {
     h1 {
         font-size: 35px;
+        @media only screen and (max-width: 500px) {
+            justify-self: center;
+            text-align: center;
+        }
     }
     & > div {
         grid-template-columns: repeat(4, 1fr);
         grid-template-rows: auto auto auto;
 
-        @media only screen and (max-width: 1065px) {
-            gap: 20px;
+        @media only screen and (max-width: 850px) {
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+
+        }
+
+        @media only screen and (max-width: 500px) {
+            grid-template-columns: 1fr;
+            justify-items: center;
 
             div {
-                min-width: 220px
+                max-width: 280px;
+                h2 {
+                    justify-self: center;
+                    text-align: center;
+                }
             }
         }
 
@@ -166,7 +181,7 @@
             font-size: 95px;
 
             &:first-child {
-                top: -90px;
+                top: -65px;
                 left: 0px;
             }
 
