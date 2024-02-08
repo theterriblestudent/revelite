@@ -4,10 +4,46 @@ nav {
     z-index: 4;
 
     .nav__content {
-        div {
-            div:hover > * {
+        & > div {
+            & > div:last-child:hover > * {
                 color: variables.$accent-color;
             }
+
+            .shop-link {
+                div {
+                    position: absolute;
+                    transform: translateY(-20px);
+
+                    transition: opacity 0.3s, color 0.5s, transform 0.3s;
+
+                    opacity: 0;
+
+                    pointer-events: none;
+
+                    border-radius: 5px;
+
+                    top: 100%;
+                    left: 10px;
+
+                    width: 170px;
+
+                    background-color: variables.$light-color;
+
+                    box-shadow: 0px 5px 15px -10px variables.$dark-color;
+                    -webkit-box-shadow: 0px 5px 15px -10px variables.$dark-color;
+                    -moz-box-shadow: 5px 0px 14px -10px variables.$dark-color;
+
+                    a {
+                        border-bottom: 1px lighten(variables.$body-text-color, 60) solid;
+                    }
+                }
+
+                .shown-catalogue {
+                    opacity: 1 !important;
+                    transform: translateY(0) !important;
+                    pointer-events: all !important;
+                }
+            } 
         }
 
         & > i  {
