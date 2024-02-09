@@ -53,8 +53,39 @@ nav {
                 display: block !important;
             }
         }
+
+        .mobile-nav {
+            display: none;
+            position: fixed;
+
+            top: 0;
+            right: -100%;
+
+            transition: right 0.5s ease-in-out;
+
+            background-color: variables.$light-color;
+
+            width: 280px;
+            height: 100vh;
+
+            i {
+                position: absolute;
+                top: 50px;
+                right: 50px;
+            }
+
+            @media only screen and (max-width: variables.$tablet-size) {
+                display: flex;
+            }
+
+        }
+
+        .shown-nav {
+            right: 0 !important;
+        }
     }
 }
+
 
 @media only screen and (max-width: 860px) {
     nav {

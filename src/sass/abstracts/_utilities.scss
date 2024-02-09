@@ -103,6 +103,11 @@
     color: variables.$accent-color;
 }
 
+//lists
+.no-list-style {
+    list-style-type: none;
+}
+
 //Backgrounds
 .bg-dark {
     background-color: variables.$dark-color;

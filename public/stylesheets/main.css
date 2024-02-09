@@ -111,6 +111,29 @@ nav .nav__content > i {
     display: block !important;
   }
 }
+nav .nav__content .mobile-nav {
+  display: none;
+  position: fixed;
+  top: 0;
+  right: -100%;
+  transition: right 0.5s ease-in-out;
+  background-color: #FFFFFF;
+  width: 280px;
+  height: 100vh;
+}
+nav .nav__content .mobile-nav i {
+  position: absolute;
+  top: 50px;
+  right: 50px;
+}
+@media only screen and (max-width: 60.5rem) {
+  nav .nav__content .mobile-nav {
+    display: flex;
+  }
+}
+nav .nav__content .shown-nav {
+  right: 0 !important;
+}
 
 @media only screen and (max-width: 860px) {
   nav .nav__content .branding, nav .nav__content > i {
@@ -606,6 +629,10 @@ nav .nav__content > i {
 
 .accent-hover:hover, .btn:hover {
   color: #EB8921;
+}
+
+.no-list-style {
+  list-style-type: none;
 }
 
 .bg-dark, .btn {
