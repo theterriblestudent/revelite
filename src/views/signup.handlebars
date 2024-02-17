@@ -1,0 +1,31 @@
+<section class="mt-100">
+    <form>
+        <div>
+            <label for="email">Email</label>
+            <input type="email" name="email">
+        </div>
+        <div>
+            <label for="password">Password</label>
+            <input type="password" name="password">
+        </div>
+        <div>
+            <label for="confirm-password">Confirm Password</label>
+            <input type="password" name="confirm-password">
+        </div>
+        <button type="submit">Submit</button>
+    </form>
+
+    <script>
+        const form = document.querySelector("form");
+
+        form.addEventListener('submit', (event) => {
+            event.preventDefault();
+            
+            fetch("/auth/register", {
+                method: 'POST',
+                body: JSON.stringify({email: "madondo.sal@gmail.com", password: "password123"}),
+                headers: {'Content-Type': 'application/json'}
+            })
+        })
+    </script>
+</section>
