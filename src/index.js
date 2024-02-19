@@ -1,12 +1,18 @@
-const express = require("express");
-const bodyParser = require("body-parser")
-const { engine } = require("express-handlebars");
 const path = require("path");
-// const database = require("./database");
+const express = require("express");
+const dotenv = require("dotenv");
+const bodyParser = require("body-parser")
+const cookieParser = require("cookie-parser");
+const { engine } = require("express-handlebars");
+const { checkUser } = require("./middleware/auth");
 const shopRouter = require("./routes/shop");
 const authRouter = require("./routes/auth");
 
 const app = express();
+
+app.use(cookieParser());
+
+dotenv.config();
 
 //Serving static files from the "public" folder
 app.use("/static", express.static("public"));
@@ -19,6 +25,9 @@ app.use(
     })
 )
 
+//Registering cookie-parser;
+
+
 // Setting up handlebars
 app.engine("handlebars", engine());
 app.set("view engine", "handlebars")
@@ -28,6 +37,7 @@ app.set("views", path.join(__dirname, "views"));
 app.use("/shop" , shopRouter);
 app.use("/auth", authRouter);
 
+app.get("*", checkUser);
 
 app.get('/', (req, res) => {
     res.render('home', {

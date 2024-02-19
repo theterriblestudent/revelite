@@ -18,14 +18,16 @@
     <script>
         const form = document.querySelector("form");
 
-        form.addEventListener('submit', (event) => {
+        form.addEventListener('submit', async (event) => {
             event.preventDefault();
             
-            fetch("/auth/register", {
+            const res = await fetch("/auth/register", {
                 method: 'POST',
-                body: JSON.stringify({email: "madondo.sal@gmail.com", password: "password123"}),
+                body: JSON.stringify({first_name: "Sanele", last_name: "Madondo", email: "sasal@gmail.com", password: "redR!ot3500", phone: "+27671855541"}),
                 headers: {'Content-Type': 'application/json'}
-            })
+            });
+
+            res.json().then(data => console.log(data));
         })
     </script>
 </section>
