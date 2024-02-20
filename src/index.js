@@ -1,31 +1,22 @@
 const path = require("path");
-const express = require("express");
 const dotenv = require("dotenv");
-const bodyParser = require("body-parser")
-const cookieParser = require("cookie-parser");
+const express = require("express");
+const cookeParser = require("cookie-parser");
 const { engine } = require("express-handlebars");
-const { checkUser } = require("./middleware/auth");
-const shopRouter = require("./routes/shop");
-const authRouter = require("./routes/auth");
+const { authMiddleware } = require("./middleware"); 
+const { authRouter, shopRouter } = require("./routes");
 
+
+//Server instantiation
 const app = express();
-
-app.use(cookieParser());
 
 dotenv.config();
 
 //Serving static files from the "public" folder
 app.use("/static", express.static("public"));
-
-//Registering Body Parser
-app.use(bodyParser.json());
-app.use(
-    bodyParser.urlencoded({
-        extended: true
-    })
-)
-
-//Registering cookie-parser;
+app.use(express.json());
+app.use(express.urlencoded());
+app.use(cookeParser());
 
 
 // Setting up handlebars
@@ -33,18 +24,18 @@ app.engine("handlebars", engine());
 app.set("view engine", "handlebars")
 app.set("views", path.join(__dirname, "views"));
 
+app.get("*", authMiddleware.checkUser);
+
 //Router
 app.use("/shop" , shopRouter);
 app.use("/auth", authRouter);
 
-app.get("*", checkUser);
 
 app.get('/', (req, res) => {
     res.render('home', {
         title: "Home",
     });
 });
-
 
 app.get('/services', (req, res) => {
     res.render('services', {
@@ -57,6 +48,7 @@ app.get('/about', (req, res) => {
         title: "About Us"
     });
 })
+
 
 
 console.log();

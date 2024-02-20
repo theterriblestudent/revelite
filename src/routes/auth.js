@@ -1,11 +1,14 @@
-const express = require("express");
-const authController = require("../controlers/authcontroller");
+const { Router } = require("express");
+const { authController } = require("../controlers");
 
-const router = express.Router();
+const router = Router();
 
-router.get("/register", authController.get_register);
-router.post("/register", authController.post_register)
+router.get("/register", (req, res) => {
+    res.render("signup", {
+        title: "Revelite | Signup"
+    });
+})
 
-
+router.post("/register", authController.register_post);
 
 module.exports = router;
