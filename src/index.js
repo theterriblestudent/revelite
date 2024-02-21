@@ -15,7 +15,6 @@ dotenv.config();
 //Serving static files from the "public" folder
 app.use("/static", express.static("public"));
 app.use(express.json());
-app.use(express.urlencoded());
 app.use(cookeParser());
 
 

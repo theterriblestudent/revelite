@@ -337,6 +337,10 @@ nav .nav__content .shown-nav {
   margin-bottom: 35px;
 }
 
+.mt-10 {
+  margin-top: 10px;
+}
+
 .mt-35 {
   margin-top: 35px;
 }
@@ -651,7 +655,7 @@ nav .nav__content .shown-nav {
   border-radius: 20px;
 }
 
-.no-border {
+.no-border, .btn {
   border: none;
 }
 
@@ -1199,6 +1203,27 @@ nav .nav__content .shown-nav {
     grid-column: 1;
   }
 }
+.signup {
+  min-height: 100vh;
+}
+.signup form {
+  border: 2px solid #c2c2c2;
+}
+.signup form > div {
+  width: 420px;
+}
+.signup form > div input {
+  border: 2px solid #c2c2c2;
+  width: 100%;
+  height: 55px;
+  border-radius: 5px;
+  padding-left: 10px;
+}
+.signup form > div .error-message {
+  color: red;
+  margin-bottom: -10px;
+}
+
 .btn {
   flex-shrink: 0;
 }

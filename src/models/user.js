@@ -9,6 +9,15 @@ async function create(firstName, lastName, email, password, phone) {
     return user.rows[0];
 }
 
+async function findByEmail(email) {
+    const user = await database.query(`SELECT * FROM site_user WHERE email='${email}';`)
+
+    if (user.rows.length === 0) throw new Error("Account with the provided email does not exist!");
+
+    return user.rows[0];
+}
+
 module.exports = {
-    create
+    create,
+    findByEmail
 }

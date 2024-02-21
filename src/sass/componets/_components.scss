@@ -16,7 +16,10 @@
     @extend .clr-trans;
     @extend .pointer;
 
+    @extend .no-border;
+
     flex-shrink: 0;
+
 }
 
 .heading {

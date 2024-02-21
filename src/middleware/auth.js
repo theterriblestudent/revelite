@@ -28,7 +28,7 @@ function checkUser(req, res, next) {
                 res.locals.user = null;
                 next()
             }else {
-                res.locals.user = decodedData.user;
+                res.locals.user = decodedData;
                 console.log(decodedData);
                 next();
             }

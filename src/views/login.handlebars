@@ -1,0 +1,71 @@
+<section class="[ signup ][  h-fs w-fit flx ai-center jc-center  ]" class="mt-100">
+    <form class="[ flx column g-20 ai-center pt-50 pb-50 pl-35 pr-35 ][ rounded-20 ]">
+        <img src="/static/images/branding.png" alt="">
+        <h1 class="[ body-text fs-20 fw-norm ][  ]">Log Into Your Account</h1>
+        <div>
+            <input type="email" id="email" class="[ font-primary fs-18 ]" placeholder="Email" name="email" >
+            <p class="[ error-message ][ font-primary ][ mt-10 ]"></p>  
+        </div>
+        <div>
+            <input type="password" id="password" class="[ font-primary fs-18 ]" placeholder="Password" name="password">
+            <p class="[ error-message ][ font-primary ][ mt-10 ]"></p>  
+        </div>
+        <div class="[ flx jc-sb ai-center w-fit mt-10 ]">
+            <a class="[ font-primary fs-18 ]" href="/auth/register" >Create Account</a>
+            <button type="submit" class="[ btn ]">Submit</button>
+        </div>
+    </form>
+
+    <script>
+        const form = document.querySelector("form");
+        const email = form.querySelector("#email");
+        const password = form.querySelector("#password");
+
+        form.addEventListener('submit', async (event) => {
+            event.preventDefault();
+
+            const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+            const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+
+            let error = false;
+
+            function setError(element, message) {
+                element.nextElementSibling.innerHTML = message;
+            }
+
+            if(!emailRegex.test(email.value)) {
+                setError(email, "Invalid email")
+                error = true;
+            } else {
+                setError(email, "");
+            }
+
+            if (!passwordRegex.test(password.value)) {
+                setError(password, "Invalid password");
+                error = true;
+            }else {
+                setError(password, "");
+            }
+
+            if(error) return;
+
+            const res = await fetch("/auth/login", {
+                method: 'POST',
+                body: JSON.stringify(
+                    {
+                        email: email.value,
+                        password: password.value,
+                    }),
+                headers: {'Content-Type': 'application/json'}
+            });
+
+            res.json().then(function(data) {
+                if (res.status !== 200) {
+                    setError(password, data.message);
+                }else {
+                    window.location.assign("/");
+                }
+            });
+        })
+    </script>
+</section>
