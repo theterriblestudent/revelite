@@ -77,10 +77,10 @@ nav {
   height: 100px;
   z-index: 4;
 }
-nav .nav__content > div > div:last-child:hover > * {
+nav .nav__content > div > div:not(.dropdown-link):last-child:hover > * {
   color: #EB8921;
 }
-nav .nav__content > div .shop-link div {
+nav .nav__content > div .dropdown-link div {
   position: absolute;
   transform: translateY(-20px);
   transition: opacity 0.3s, color 0.5s, transform 0.3s;
@@ -95,10 +95,10 @@ nav .nav__content > div .shop-link div {
   -webkit-box-shadow: 0px 5px 15px -10px #080808;
   -moz-box-shadow: 5px 0px 14px -10px #080808;
 }
-nav .nav__content > div .shop-link div a {
+nav .nav__content > div .dropdown-link div a {
   border-bottom: 1px whitesmoke solid;
 }
-nav .nav__content > div .shop-link .shown-catalogue {
+nav .nav__content > div .dropdown-link .shown-catalogue {
   opacity: 1 !important;
   transform: translateY(0) !important;
   pointer-events: all !important;
@@ -613,6 +613,10 @@ nav .nav__content .shown-nav {
 
 .fw-bold {
   font-weight: bold;
+}
+
+.lh-0 {
+  line-height: 0;
 }
 
 .lh-1 {
@@ -1211,6 +1215,11 @@ nav .nav__content .shown-nav {
 }
 .signup form > div {
   width: 420px;
+}
+@media only screen and (max-width: 550px) {
+  .signup form > div {
+    width: calc(90vw - 70px);
+  }
 }
 .signup form > div input {
   border: 2px solid #c2c2c2;

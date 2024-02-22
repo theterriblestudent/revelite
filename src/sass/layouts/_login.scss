@@ -8,6 +8,10 @@
         & > div {
             width: 420px;
 
+            @media only screen and (max-width: 550px) {
+                width: calc(90vw - 70px);
+            }
+
             input {
                 border: 2px solid lighten($color: variables.$body-text-color, $amount: 40);
                 width: 100%;

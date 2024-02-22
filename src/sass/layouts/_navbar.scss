@@ -5,11 +5,11 @@ nav {
 
     .nav__content {
         & > div {
-            & > div:last-child:hover > * {
+            & > div:not(.dropdown-link):last-child:hover > * {
                 color: variables.$accent-color;
             }
 
-            .shop-link {
+            .dropdown-link {
                 div {
                     position: absolute;
                     transform: translateY(-20px);

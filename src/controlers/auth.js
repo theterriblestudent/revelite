@@ -62,3 +62,8 @@ module.exports.login_post = async function(req, res) {
         res.status(422).json({message: "Invalid Credentials!"});
     }
 }
+
+module.exports.logout_get = function(req, res) {
+    res.cookie("jwt", "");
+    res.redirect("/");
+}

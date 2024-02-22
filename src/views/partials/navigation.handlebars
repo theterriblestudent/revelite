@@ -3,7 +3,7 @@
         <p class="[ branding ] [ font-sec fs-32 clr-heading pointer ]">revelite</p>
         <div class="[ flx row g-60 ai-center none-md ][ font-sec fs-20 ]">
             <a href="/" class="[ clr-heading accent-hover clr-trans ]">Home</a>
-            <div  class="[ shop-link ][ relative ][ pointer clr-heading ]">
+            <div  class="[ dropdown-link shop-link ][ relative ][ pointer clr-heading ]">
                 <a class="[ clr-trans accent-hover ]">Shop Parts</a>
                 <div class="[ flx column g-10 pt-10 pb-10 pl-25 pr-25 ]">
                     <a class="[ accent-hover clr-trans ]">Shop All</a>
@@ -17,10 +17,22 @@
             <a href="/services" class="[ clr-heading accent-hover clr-trans ]">Services</a>
             <a href="#" class="[ clr-heading accent-hover clr-trans ]">Gallery</a>
             <a href="/about" class="[ clr-heading accent-hover clr-trans ]">About Us</a>
+            {{#if user}}
+                <div class="[ dropdown-link account-link ][ relative ][ flx row ai-center g-5 pointer clr-heading ]">
+                    <i class='[ fas fa-user-circle ] [ clr-trans fs-18]'></i>
+                    <a class="[ clr-trans accent-hover ]">{{user.first_name}}</a>
+                    <div class="[ flx column g-10 pt-10 pb-10 pl-25 pr-25 ]">
+                        <a class="[ accent-hover clr-trans ]">Cart</a>
+                        <a href="auth/logout" class="[ accent-hover clr-trans ]">Log out</a>
+                    </div>
+                </div>
+            {{/if}}
+            {{#unless user}}
             <div class="[ flx row ai-center g-5 pointer ]">
-                <i class='[ fas fa-shopping-cart ] [ clr-trans ]'></i>
-                <a class="[ clr-heading clr-trans ]">Cart</a>
+                <i class='[ fas fa-user-circle ] [ clr-trans fs-18]'></i>
+                <a href="/auth/register" class="[ clr-heading clr-trans lh-0 ]">Sign In</a>
             </div>
+            {{/unless}}
         </div>
         <i class="[ fas fa-bars ][ none block-md ][ clr-trans fs-20 ]"></i>
         <div class="[ mobile-nav ][ flx-md js-center ai-center ]">
@@ -33,9 +45,19 @@
                     <li><a  class="[ fs-20 heading ]" href="">Engine Parts</a></li>
                     <li><a  class="[ fs-20 heading ]" href="">Body Parts</a></li>
                     <li><a  class="[ fs-20 heading ]" href="">Accessories</a></li>
-            </ul>
+                </ul>
             <li><a  class="[ fs-20 heading ]" href="">Services</a></li>
             <li><a  class="[ fs-20 heading ]" href="">About Us</a></li><li><a href=""></a></li>
+            {{#if user}}
+                <li><a  class="[ fs-20 heading ]" href="">{{user.first_name}}</a></li>
+                <ul class="[ no-list-style ] [ flx g-10 column ]">
+                    <li><a  class="[ fs-20 heading ]" href="">Cart</a></li>
+                    <li><a  class="[ fs-20 heading ]" href="/auth/logout">Logout</a></li>
+                </ul>
+            {{/if}}
+            {{#unless user}}
+                <li><a  class="[ fs-20 heading ]" href="/auth/register">Sign In</a></li>
+            {{/unless}}
             </ul>
             <i class="[ fas fa-times ][ fs-30 ]"></i>
         </div>
