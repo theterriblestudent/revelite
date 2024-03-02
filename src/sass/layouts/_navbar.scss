@@ -89,6 +89,7 @@ nav {
 
 @media only screen and (max-width: 860px) {
     nav {
+        background-color: variables.$dark-color;
         .nav__content {
             .branding, & > i {
                 color: variables.$light-color;

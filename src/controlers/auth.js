@@ -32,6 +32,8 @@ module.exports.register_post = async function(req, res) {
             }
             if (error.code === "23505" && error.constraint === "phone_u") {
                 res.status(400).json({message: "An account using this phone number already exists", target: "phone"});
+            }else {
+                console.log(error);
             }
         }
     } else {

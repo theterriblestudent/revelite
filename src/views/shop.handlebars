@@ -1,0 +1,114 @@
+<section class="[ shop ][ grd cg-40 mt-100 ]">
+{{!-- Breadcrumbs --}}
+
+    <div class="[ breadcrumbs mb-10 mt-20 ][ flx row ai-center g-10 ]">
+        <a class="[ body-text fs-18  ]">Home</a>
+        <i  class="[ fa-solid fa-chevron-right ]"></i>
+        <a class="[ body-text fs-18  ]" >Shop</a>
+        <i class="[ fa-solid fa-chevron-right ]"></i>
+        <a class="[ body-text fs-18  ]">{{title}}</a>
+    </div>
+
+{{!-- Category Selector Section --}}
+    <div class="[ category-selector ] [ grd-md flx column g-10-md ]">
+        <div class="[ category-header ][ flx row g-10 ai-center ]">
+            <h1 class="[ heading ][ mb-10 mb-0-md ]">Categories</h1>
+            <span class="[ category-chevron ]">
+                <i class="[ fa-solid fa-chevron-down ]"></i>
+            </span>
+        </div>
+        <div class="[ cartegory ]">
+            <input type="checkbox" name="" class="[ ]">
+            <label class="[ body-text fs-18 ]">Wheels</label>
+        </div>
+        <div class="[ cartegory ]">
+            <input type="checkbox" name="" class="[ ]">
+            <label class="[ body-text fs-18 ]">Suspension</label>
+        </div>
+        <div class="[ cartegory ]">
+            <input type="checkbox" name="" class="[ ]">
+            <label class="[ body-text fs-18 ]">Engine Parts</label>
+        </div>
+        <div class="[ cartegory ]">
+            <input type="checkbox" name="" class="[ ]">
+            <label class="[ body-text fs-18 ]">Exhaust Systems</label>
+        </div>
+        <div class="[ cartegory ]">
+            <input type="checkbox" name="" class="[ ]">
+            <label class="[ body-text fs-18 ]">Head and Tail Lights</label>
+        </div>
+        <div class="[ cartegory ][ mb-20 ]">
+            <input type="checkbox" name="" class="[ ]">
+            <label class="[ body-text fs-18 ]">Accessories</label>
+        </div>
+        <button class="[ btn ]">Apply</button>
+    </div>
+
+{{!--Products Section  --}}
+    <div class="[ products ][ pt-10 grd g-30 g-15-md ai-start ac-start ][  ]">
+        <h1 class="[ heading fs-24 txt-center none-md ]">Products</h1>
+        <p class="[ body-text ][ none block-md ]">Showing 20 items</p>
+
+{{!-- Products Configuration Stripe --}}
+        <div class="[ products-config ][ flx row g-40 ]">
+            <div class="[ flx-1 ]">
+                <label class="[ body-text fs-18 ]" for="sort">Sort by: </label>
+                <select class="[ select ][ body-text fs-18 ]" name="sort" id="sort-select">
+                    <option class="[ body-text fs-18 ]">Price</option>
+                    <option class="[ body-text fs-18 ]">Name</option>
+                    <option class="[ body-text fs-18 ]">Year </option>
+                </select>
+            </div>
+
+            <p class="[ body-text fs-18 ][ none-md ]">20 items</p>
+
+            <div>
+                <label class="[ body-text fs-18 ]" for="show">Show: </label>
+                <select class="[ select ][ body-text fs-18 ]" name="show" id="show-select">
+                    <option class="[ body-text fs-18 ]">All</option>
+                    <option class="[ body-text fs-18 ]">10</option>
+                    <option class="[ body-text fs-18 ]">20</option>
+                </select>
+            </div>
+        </div>
+
+{{!-- Products Display --}}
+       {{#each products}}
+       <div class="product">
+            <div class="[ image-bg ][ flx jc-center ai-center mb-10 ]">
+                <img src="/static/product_images{{this.image}}"/>
+            </div>
+            <p class="[ font-primary ][ mb-10 ]">{{this.name}}</p>
+            <div class="[ flx row jc-sb ai-center ]">
+                <div class="[ flx row ai-center g-5 ]">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <p class="[ body-text ]">R {{this.price}}</p>
+                </div>
+                <i class="fa-regular fa-heart"></i>
+            </div>
+        </div>
+       {{/each}}
+        </div>
+    </div>
+
+
+    <script>
+        let isCategorySectionShown = false;
+
+        const categoryChev = document.querySelector(".fa-chevron-down");
+        const productsSection = document.querySelector(".products");
+        const categorySelector = document.querySelector(".category-selector");
+
+        productsSection.style.top = `${categoryChev.getBoundingClientRect().bottom - 90}px`;
+
+        categoryChev.addEventListener('click', function(event) {
+            categoryChev.classList.toggle("opened-category-selector-chevron")
+
+            if (isCategorySectionShown = !isCategorySectionShown) 
+                productsSection.style.top = `${categorySelector.getBoundingClientRect().bottom - 60}px`;
+            else 
+                productsSection.style.top = `${categoryChev.getBoundingClientRect().bottom - 90}px`;
+        });
+
+    </script>
+</section>
