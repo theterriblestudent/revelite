@@ -117,6 +117,10 @@
     background-color: variables.$dark-color;
 }
 
+.bg-accent {
+    background-color: variables.$accent-color;
+}
+
 //Borders
 .egg {
     border-radius: 500px;
@@ -124,6 +128,10 @@
 
 .rounded-20 {
     border-radius: 20px;
+}
+
+.rounded-5 {
+    border-radius: 10px;
 }
 
 .no-border {
@@ -153,5 +161,9 @@
 @media only screen and (max-width: 968px) {
     .txt-start-md {
         text-align: start;
+    }
+
+    .txt-center-md {
+        text-align: center;
     }
 }

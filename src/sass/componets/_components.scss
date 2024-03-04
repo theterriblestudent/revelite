@@ -1,5 +1,6 @@
 @use "../abstracts/composition" as *;
 @use '../abstracts/utilities' as *;
+@use "../abstracts/variables";
 
 .btn {
     @extend .pt-5;
@@ -8,17 +9,20 @@
     @extend .pr-35;
 
     @extend .egg;
-    @extend .bg-dark;
+    @extend .bg-accent;
     @extend .font-sec;
-    @extend .clr-light;
+    @extend .clr-heading;
     @extend .fs-20;
-    @extend .accent-hover;
     @extend .clr-trans;
     @extend .pointer;
 
     @extend .no-border;
 
     flex-shrink: 0;
+
+    &:hover {
+        color: variables.$light-color;
+    }
 
 }
 
