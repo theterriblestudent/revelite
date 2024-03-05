@@ -607,6 +607,10 @@ nav .nav__content .shown-nav {
   font-family: "Bebas Neue", sans-serif;
 }
 
+.font-script {
+  font-family: "Kaushan Script", cursive;
+}
+
 .fs-18 {
   font-size: 1rem;
   font-size: clamp(1rem, 0.96rem + 0.18vw, 1.125rem);
@@ -786,6 +790,11 @@ nav .nav__content .shown-nav {
 }
 .services .services-content > div {
   width: 50%;
+}
+.services .services-content > div .title > div {
+  width: 30px;
+  height: 2px;
+  background-color: #FFFFFF;
 }
 .services .services-content > div:first-child p:not(:last-child) {
   color: transparent;
@@ -1444,11 +1453,8 @@ nav .nav__content .shown-nav {
   .shop .category-selector .category-chevron i {
     transition: transform 0.5s ease-in;
   }
-  .shop .category-selector .category-header, .shop .category-selector .btn {
+  .shop .category-selector .category-header {
     grid-column: span 4;
-  }
-  .shop .category-selector .btn {
-    justify-self: center;
   }
   .opened-category-selector-chevron {
     transform: rotate(180deg);

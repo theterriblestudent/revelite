@@ -38,6 +38,15 @@
     .services-content {
         & > div {
             width: 50%;
+
+            .title {
+                & > div {
+                    width: 30px;
+                    height: 2px;
+                    background-color: variables.$light-color;
+                }
+
+            }
     
             &:first-child {
                 p:not(:last-child){

@@ -134,12 +134,8 @@
                 display: block;
             }
 
-            .category-header, .btn {
+            .category-header {
                 grid-column: span 4;
-            }
-
-            .btn {
-                justify-self: center;
             }
 
         }

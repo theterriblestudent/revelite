@@ -16,7 +16,7 @@ module.exports.get_all_products = async function(req, res) {
 
 module.exports.get_by_category = async function(req, res) {
     const categories = req.query.categories
-    const categoryNames = ["Wheels", "Suspension", "Engine Parts", "Accessories"]
+    const categoryNames = ["Wheels", "Suspension", "Engine Parts", "Wiring amd Electronics", "Lights", "Accessories"]
 
     try {
         const products = await Product.findByCategory(categories);
