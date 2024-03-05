@@ -4,6 +4,7 @@
   "description": "Car tuning shop website.",
   "main": "index.js",
   "scripts": {
+    "start": "node src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "scss:watch": "sass --watch src/sass/main.scss:public/stylesheets/main.css",
     "start:watch": "nodemon src/index.js",
