@@ -6,9 +6,10 @@
   "scripts": {
     "start": "node src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "scss:watch": "sass --watch src/sass/main.scss:public/stylesheets/main.css",
+    "scss:watch": "sass --watch src/sass/main.scss:src/public/stylesheets/main.css",
     "start:watch": "nodemon src/index.js",
-    "dev": "run-p start:watch scss:watch"
+    "dev": "run-p start:watch scss:watch",
+    "vercel-build": "echo hello"
   },
   "repository": {
     "type": "git",
