@@ -91,12 +91,20 @@
     line-height: 1.2;
 }
 
+.lh-2 {
+    line-height: 1;
+}
+
 .clr-heading {
     color: variables.$dark-color;
 }
 
 .clr-body {
     color: variables.$body-text-color;
+}
+
+.clr-body-light {
+    color: lighten(variables.$body-text-color, 50);
 }
 
 .clr-accent {
@@ -123,6 +131,10 @@
 
 .bg-accent {
     background-color: variables.$accent-color;
+}
+
+.bg-light {
+    background-color: variables.$light-color;
 }
 
 //Borders
@@ -169,5 +181,9 @@
 
     .txt-center-md {
         text-align: center;
+    }
+
+    .fw-norm-md {
+        font-weight: normal;
     }
 }
