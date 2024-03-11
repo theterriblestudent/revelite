@@ -84,6 +84,62 @@
     }
 }
 
+.financing-section {
+    & > div {
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: repeat(4, auto);
+
+        @media only screen and (max-width: 1100px) {
+            grid-template-columns: 1fr 1fr;
+            row-gap: 20px;
+        }
+
+        @media only screen and (max-width: 550px) {
+            grid-template-columns: 1fr;
+        }
+
+        & > div {
+            grid-row: span 4;
+
+            h3 {
+                &::before {
+                    content: "";
+
+                    width: 4px;
+                    align-self: stretch;
+
+                    background-color: variables.$accent-color;
+                }
+            }
+            background-color: darken(variables.$light-color, 5);
+
+            img {
+                object-fit: cover;
+                object-position: center;
+
+                aspect-ratio: 16 / 9;
+            }
+
+            ul {
+                list-style-type: none;
+                padding-left: 0;
+
+                li {
+                    &::before {
+                        content: "";
+                        display: block;
+                        width: 6px;
+                        height: 6px;
+                        background-color: variables.$accent-color;
+
+                    }
+                }
+            }
+        }
+
+    }
+}
+
 
 .testimonial-section {
     grid-template-columns: 2fr 3fr;

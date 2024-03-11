@@ -477,6 +477,10 @@ nav .nav__content .shown-nav {
   row-gap: 60px;
 }
 
+.cg-20 {
+  column-gap: 20px;
+}
+
 .cg-40 {
   column-gap: 40px;
 }
@@ -1174,6 +1178,48 @@ nav .nav__content .shown-nav {
   height: 25px;
   width: auto;
   margin: 0 35px;
+}
+
+.financing-section > div {
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(4, auto);
+}
+@media only screen and (max-width: 1100px) {
+  .financing-section > div {
+    grid-template-columns: 1fr 1fr;
+    row-gap: 20px;
+  }
+}
+@media only screen and (max-width: 550px) {
+  .financing-section > div {
+    grid-template-columns: 1fr;
+  }
+}
+.financing-section > div > div {
+  grid-row: span 4;
+  background-color: #ebebeb;
+}
+.financing-section > div > div h3::before {
+  content: "";
+  width: 4px;
+  align-self: stretch;
+  background-color: #EB8921;
+}
+.financing-section > div > div img {
+  object-fit: cover;
+  object-position: center;
+  aspect-ratio: 16/9;
+}
+.financing-section > div > div ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+.financing-section > div > div ul li::before {
+  content: "";
+  display: block;
+  width: 6px;
+  height: 6px;
+  background-color: #EB8921;
 }
 
 .testimonial-section {
