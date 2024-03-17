@@ -809,6 +809,14 @@ nav .nav__content .shown-nav {
   max-width: none;
   height: auto;
 }
+@media only screen and (max-width: 650px) {
+  .hero {
+    background: url("/static/images/hero-mobile.jpg") no-repeat center center/cover;
+  }
+  .hero img {
+    display: none;
+  }
+}
 
 .services {
   background: url("/static/images/services-bg.jpg") no-repeat center center/cover;
@@ -816,6 +824,11 @@ nav .nav__content .shown-nav {
 }
 .services .overlay {
   background-color: rgba(0, 0, 0, 0.9098039216);
+}
+@media only screen and (max-width: 650px) {
+  .services .overlay {
+    background-color: rgba(0, 0, 0, 0.9607843137);
+  }
 }
 .services .services-content > div .title > div {
   height: 3px;
@@ -828,12 +841,22 @@ nav .nav__content .shown-nav {
   color: transparent;
   -webkit-text-stroke: 3px rgba(255, 255, 255, 0.9529411765);
   letter-spacing: 4px;
-  font-size: 2.5rem;
-  font-size: clamp(2.5rem, 1.7045454545rem + 3.6363636364vw, 5rem);
+  font-size: 3.8rem;
+  font-size: clamp(3.8rem, 3.42rem + 1.75vw, 5rem);
 }
 @media only screen and (max-width: 450px) {
   .services .services-content > div:first-child p:not(.fs-20) {
     -webkit-text-stroke: 1px rgba(255, 255, 255, 0.9529411765);
+  }
+}
+@media only screen and (max-width: 500px) {
+  .services .services-content > div:first-child p.large-service {
+    display: none;
+  }
+}
+@media only screen and (max-width: 500px) {
+  .services .services-content > div:first-child p.mobile-service {
+    display: inline-block;
   }
 }
 .services .services-content > div:first-child .empty-space {
@@ -864,17 +887,14 @@ nav .nav__content .shown-nav {
     transform: translateX(-100%);
   }
 }
-.part-brands {
-  background-color: #000;
-}
 .part-brands div {
   animation: scroll 15s linear infinite;
   flex-shrink: 0;
 }
 .part-brands div img {
-  width: 160px;
-  height: auto;
-  margin: 0 45px;
+  height: 20px;
+  width: auto;
+  margin: 0 55px;
 }
 @media only screen and (max-width: 450px) {
   .part-brands div img {
@@ -903,10 +923,21 @@ nav .nav__content .shown-nav {
 }
 @media only screen and (max-width: 700px) {
   .about-overview {
-    height: 60vh;
+    justify-items: center;
+    height: fit-content;
+    padding-block: 50px;
+  }
+  .about-overview > div:not(:first-child) {
+    align-items: center;
+  }
+  .about-overview > div:not(:first-child) .btn {
+    align-self: center;
+  }
+  .about-overview > div:not(:first-child) > p, .about-overview > div:not(:first-child) > h1 {
+    text-align: center;
   }
   .about-overview .overlay {
-    background: rgba(0, 0, 0, 0.9254901961);
+    background: rgba(0, 0, 0, 0.7960784314);
   }
 }
 
@@ -932,6 +963,7 @@ nav .nav__content .shown-nav {
 }
 .benifits > div:not(.title) > div > div h2::before {
   content: "";
+  flex-shrink: 0;
   width: 3px;
   height: 65%;
   background-color: #EB8921;
@@ -950,13 +982,17 @@ nav .nav__content .shown-nav {
   .benifits > div:not(.title) > div > div {
     width: 280px;
     justify-items: center;
+    align-items: center;
     justify-self: center;
+    display: flex;
+    flex-direction: column;
+    row-gap: 15px;
   }
   .benifits > div:not(.title) > div > div p, .benifits > div:not(.title) > div > div h2 {
     text-align: center;
   }
-  .benifits > div:not(.title) > div > div:nth-child(3), .benifits > div:not(.title) > div > div:nth-child(4) {
-    margin-top: -50px;
+  .benifits > div:not(.title) > div > div > * {
+    margin: 0 !important;
   }
 }
 @media only screen and (max-width: 700px) {
@@ -1097,9 +1133,15 @@ nav .nav__content .shown-nav {
     display: block;
   }
 }
+@media only screen and (max-width: 650px) {
+  .hero .hero__overlay {
+    background: rgba(0, 0, 0, 0.7882352941);
+  }
+}
 @media only screen and (max-width: 450px) {
   .hero {
-    height: 80vh;
+    padding-top: 80px;
+    height: fit-content;
   }
   .hero .hero__text {
     margin-top: 60px;
@@ -1190,11 +1232,6 @@ nav .nav__content .shown-nav {
     row-gap: 20px;
   }
 }
-@media only screen and (max-width: 550px) {
-  .financing-section > div {
-    grid-template-columns: 1fr;
-  }
-}
 .financing-section > div > div {
   grid-row: span 4;
   background-color: #ebebeb;
@@ -1220,6 +1257,23 @@ nav .nav__content .shown-nav {
   width: 6px;
   height: 6px;
   background-color: #EB8921;
+}
+@media only screen and (max-width: 550px) {
+  .financing-section {
+    grid-column: full-width !important;
+  }
+  .financing-section > h1 {
+    padding-inline: 5%;
+  }
+  .financing-section > div {
+    grid-template-columns: repeat(4, 1fr);
+    overflow-x: scroll;
+    padding-inline: 5%;
+  }
+  .financing-section > div > div {
+    width: 85vw;
+    flex-shrink: 0;
+  }
 }
 
 .testimonial-section {
@@ -1569,6 +1623,10 @@ body::-webkit-scrollbar {
 
 body::-webkit-scrollbar-thumb {
   background-color: #EB8921;
+}
+
+body {
+  scroll-behavior: smooth;
 }
 
 /*# sourceMappingURL=main.css.map */

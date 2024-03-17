@@ -25,6 +25,13 @@
         max-width: none;
         height: auto;
     }
+
+    @media only screen and (max-width: 650px) {
+        background: url("/static/images/hero-mobile.jpg") no-repeat center center/cover;
+        img {
+            display: none;
+        }
+    }
 }
 
 .services {
@@ -33,6 +40,9 @@
 
     .overlay {
         background-color: #000000e8;
+        @media only screen and (max-width: 650px) {
+            background-color: #000000f5;
+        }
     }
 
     .services-content {
@@ -52,11 +62,22 @@
                     -webkit-text-stroke: 3px #fffffff3;
                     letter-spacing: 4px;
 
-                    font-size: 2.5rem;
-                    font-size: clamp(2.5rem, 1.7045454545454546rem + 3.6363636363636362vw, 5rem);
+                    font-size: 3.8rem;
+                font-size: clamp(3.8rem, 3.42rem + 1.75vw, 5rem);
 
                     @media only screen and (max-width: 450px) {
                         -webkit-text-stroke: 1px #fffffff3;   
+                    }
+                }
+                p.large-service {
+                    @media only screen and (max-width: 500px) {
+                        display: none;
+                    } 
+                }
+
+                p.mobile-service {
+                    @media only screen and (max-width: 500px) {
+                        display: inline-block;
                     }
                 }
                 .empty-space {
@@ -95,14 +116,14 @@
 }
 
 .part-brands {
-    background-color: #000;
+    // background-color: #c4c4c4;
     div {
         animation: scroll 15s linear infinite;
         flex-shrink: 0;
         img {
-            width: 160px;
-            height: auto;
-            margin: 0 45px;
+            height: 20px;
+            width: auto;
+            margin: 0 55px;
 
             @media only screen and (max-width: 450px) {
                 margin: 0 20px;
@@ -137,11 +158,26 @@
     }
 
     @media only screen and (max-width: 700px) {
-        .overlay {
-            background: #000000ec;
+        justify-items: center;
+
+        & > div:not(:first-child) {
+            align-items: center;
+
+            .btn {
+                align-self: center;
+            }
+
+            & > p, & > h1 {
+                text-align: center;
+            }
         }
 
-        height: 60vh;
+        .overlay {
+            background: #000000cb;
+        }
+
+        height: fit-content;
+        padding-block: 50px;
     }
 
 }
@@ -174,6 +210,8 @@
 
                         @extend .block;
 
+                        flex-shrink: 0;
+
                         width: 3px;
                         height: 65%;
                         background-color: variables.$accent-color;
@@ -195,14 +233,20 @@
                 & > div {
                     width: 280px;
                     justify-items: center;
+                    align-items: center;
                     justify-self: center;
+
+                    display: flex;
+                    flex-direction: column;
+                    row-gap: 15px;
+                    
 
                     p, h2 {
                         text-align: center;
                     }
-
-                    &:nth-child(3), &:nth-child(4) {
-                        margin-top: -50px;
+                    
+                    & > * {
+                        margin: 0 !important;
                     }
                 }
             }
@@ -298,8 +342,6 @@
             & > div {
                 .title {
                     flex-direction: row-reverse;
-                    & > div {   
-                    }
     
                 }
             }
@@ -387,9 +429,16 @@
     }
 }
 
+@media only screen and (max-width: 650px ) {
+    .hero .hero__overlay {
+        background: #000000c9;
+    }
+}
+
 @media only screen and (max-width: 450px) {
     .hero {
-        height: 80vh;
+        padding-top: 80px;
+        height: fit-content;
 
         .hero__text {
             margin-top: 60px;

@@ -12,3 +12,7 @@ body::-webkit-scrollbar {
 body::-webkit-scrollbar-thumb {
     background-color: abstracts.$accent-color;
 }
+
+body {
+    scroll-behavior: smooth;
+}
