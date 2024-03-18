@@ -793,7 +793,7 @@ nav .nav__content .shown-nav {
 .hero {
   grid-template-columns: 30% 1fr;
   grid-column: content/full-width;
-  height: 90vh;
+  height: 92vh;
   overflow-x: hidden;
   background: linear-gradient(90deg, rgba(255, 255, 255, 0) 23.39%, rgba(255, 255, 255, 0.7098039216) 45.37%, rgba(232, 232, 232, 0.1294117647) 61.23%, rgba(198, 198, 198, 0.3294117647) 76.99%);
 }
@@ -886,6 +886,9 @@ nav .nav__content .shown-nav {
   100% {
     transform: translateX(-100%);
   }
+}
+.part-brands {
+  background-color: #000000;
 }
 .part-brands div {
   animation: scroll 15s linear infinite;

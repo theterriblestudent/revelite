@@ -5,7 +5,7 @@
 .hero {
     grid-template-columns: 30% 1fr;
     grid-column: content / full-width;
-    height: 90vh;
+    height: 92vh;
     overflow-x: hidden;
     background: linear-gradient(90deg, #ffffff00 23.39%, #ffffffb5 45.37%, #e8e8e821 61.23%, #c6c6c654 76.99%);
 
@@ -116,7 +116,7 @@
 }
 
 .part-brands {
-    // background-color: #c4c4c4;
+    background-color: #000000;
     div {
         animation: scroll 15s linear infinite;
         flex-shrink: 0;
