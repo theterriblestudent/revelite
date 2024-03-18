@@ -695,6 +695,10 @@ nav .nav__content .shown-nav {
   font-weight: bold;
 }
 
+.uppercase {
+  text-transform: uppercase;
+}
+
 .lh-0 {
   line-height: 0;
 }
@@ -1145,7 +1149,6 @@ nav .nav__content .shown-nav {
   .hero {
     padding-top: 80px;
     min-height: fit-content;
-    height: 60vh;
   }
   .hero .hero__text {
     margin-top: 60px;
@@ -1263,20 +1266,16 @@ nav .nav__content .shown-nav {
   background-color: #EB8921;
 }
 @media only screen and (max-width: 550px) {
-  .financing-section {
-    grid-column: full-width !important;
-  }
   .financing-section > h1 {
     padding-inline: 5%;
   }
   .financing-section > div {
-    grid-template-columns: repeat(4, 1fr);
-    overflow-x: scroll;
-    padding-inline: 5%;
+    grid-template-columns: 1fr;
+    justify-items: center;
   }
   .financing-section > div > div {
-    width: 85vw;
     flex-shrink: 0;
+    width: 95%;
   }
 }
 

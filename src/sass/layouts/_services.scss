@@ -140,18 +140,15 @@
             padding-inline: 5%;
         }
         & > div {
-            grid-template-columns: repeat(4, 1fr);
-            overflow-x: scroll;
-
-            padding-inline: 5%;
+            grid-template-columns: 1fr;
+            justify-items: center;
 
             & > div {
-                width: 85vw;
                 flex-shrink: 0;
+                width: 95%;
             }
         }
-
-        grid-column: full-width !important; 
+ 
     }
 }
 
