@@ -34,6 +34,10 @@
             textarea {
                 height: 250px;
             }
+
+            @supports not (grid-template-columns: subgrid) {
+                grid-template-columns: 15% 80%;
+            }
         }
 
         a {

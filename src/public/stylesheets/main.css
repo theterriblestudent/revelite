@@ -1376,6 +1376,11 @@ nav .nav__content .shown-nav {
 .book-appointment form div textarea {
   height: 250px;
 }
+@supports not (grid-template-columns: subgrid) {
+  .book-appointment form div {
+    grid-template-columns: 15% 80%;
+  }
+}
 .book-appointment form a {
   grid-column: 2;
 }
