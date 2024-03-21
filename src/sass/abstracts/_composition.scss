@@ -450,6 +450,10 @@
         justify-content: start;
     }
 
+    .w-fit-md {
+        width: 100%;
+    }
+
     .g-10-md {
         gap: 10px;
     }
@@ -527,5 +531,9 @@
 
     .pb-30-sd {
         padding-bottom: 30px;;
+    }
+
+    .mb-20-sm {
+        margin-bottom: 20px;
     }
 }
