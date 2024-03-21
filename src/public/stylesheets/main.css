@@ -960,6 +960,12 @@ nav .nav__content .shown-nav {
 .benifits > div:not(.title) > div > div a {
   margin-top: -60px;
 }
+@supports not (grid-template-rows: subgrid) {
+  .benifits > div:not(.title) > div > div {
+    grid-template-columns: auto auto auto;
+    row-gap: 15px;
+  }
+}
 @media only screen and (max-width: 700px) {
   .benifits > div:not(.title) > div {
     grid-template-columns: 1fr;
