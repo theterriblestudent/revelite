@@ -618,6 +618,9 @@ nav .nav__content .shown-nav {
   .mb-20-sm {
     margin-bottom: 20px;
   }
+  .pb-30-sm {
+    padding-bottom: 30px;
+  }
 }
 .font-primary, .body-text {
   font-family: "Roboto Condensed", sans-serif;
@@ -1050,9 +1053,6 @@ nav .nav__content .shown-nav {
   }
   .services {
     height: auto;
-  }
-  .services .services-content {
-    padding-bottom: 60px;
   }
   .services .services-content > div .title {
     flex-direction: row-reverse;
