@@ -36,7 +36,13 @@
             }
 
             @supports not (grid-template-columns: subgrid) {
-                grid-template-columns: 15% 80%;
+                grid-template-columns: 1fr 8fr;
+
+                column-gap:  30px;
+                
+                @media only screen and (max-width: variables.$tablet-size) {
+                    column-gap: 15px;
+                }
             }
         }
 

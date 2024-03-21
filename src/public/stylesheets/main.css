@@ -954,16 +954,16 @@ nav .nav__content .shown-nav {
   height: 65%;
   background-color: #EB8921;
 }
-.benifits > div:not(.title) > div > div p {
-  margin-top: -60px;
-}
-.benifits > div:not(.title) > div > div a {
+.benifits > div:not(.title) > div > div p, .benifits > div:not(.title) > div > div a {
   margin-top: -60px;
 }
 @supports not (grid-template-rows: subgrid) {
   .benifits > div:not(.title) > div > div {
-    grid-template-columns: auto auto auto;
+    grid-template-rows: auto auto auto;
     row-gap: 15px;
+  }
+  .benifits > div:not(.title) > div > div p, .benifits > div:not(.title) > div > div a {
+    margin-top: 0px;
   }
 }
 @media only screen and (max-width: 700px) {
@@ -1378,7 +1378,13 @@ nav .nav__content .shown-nav {
 }
 @supports not (grid-template-columns: subgrid) {
   .book-appointment form div {
-    grid-template-columns: 15% 80%;
+    grid-template-columns: 1fr 8fr;
+    column-gap: 30px;
+  }
+  @media only screen and (max-width: 60.5rem) {
+    .book-appointment form div {
+      column-gap: 15px;
+    }
   }
 }
 .book-appointment form a {
