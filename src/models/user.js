@@ -6,7 +6,14 @@ async function create(firstName, lastName, email, password, phone) {
     VALUES('${firstName}', '${lastName}', '${email}', '${phone}', '${password}') 
     RETURNING *;`);
 
-    return user.rows[0];
+    const cart_id = await database.query(`
+        INSERT INTO user_cart(user_id) VALUES(${user.rows[0].id}) RETURNING id;
+    `);
+
+    return {
+        ...user.rows[0],
+        cart_id: cart_id.rows[0].id
+    };
 }
 
 async function findByEmail(email) {
@@ -14,7 +21,14 @@ async function findByEmail(email) {
 
     if (user.rows.length === 0) throw new Error("Account with the provided email does not exist!");
 
-    return user.rows[0];
+    const user_cart = await database.query(`
+        SELECT * FROM user_cart WHERE user_id=${user.rows[0].id};
+    `);
+
+    return {
+        ...user.rows[0],
+        cart_id: user_cart.rows[0].id
+    };
 }
 
 module.exports = {

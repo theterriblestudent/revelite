@@ -29,7 +29,6 @@ function checkUser(req, res, next) {
                 next()
             }else {
                 res.locals.user = decodedData;
-                console.log(decodedData);
                 next();
             }
         })

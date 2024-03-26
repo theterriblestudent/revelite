@@ -23,6 +23,7 @@ module.exports.get_by_category = async function(req, res) {
         let title = "";
 
         res.locals.products = products;
+        console.log(products);
 
         categories.split(",").forEach(category_id => {
             if(!title) {
@@ -54,5 +55,26 @@ module.exports.search = async function(req, res) {
         })
     } catch(error) {
         console.log(error);
+    }
+}
+
+module.exports.post_add_item_to_cart = async function(req, res) {
+    if(res.locals.user) {
+        const { item_id } = req.body;
+        const cart_item = await Product.addItemToCart(item_id, res.locals.user.cart_id);
+
+        res.status(200).json({...cart_item, message: "Item added to cart!"});
+    }else {
+        res.status(401).json({message: "User is not logged in!"});
+    }
+}
+
+module.exports.delete_item_from_cart = async function(req, res) {
+    try {
+        Product.deleteItemFromCart(cart_item_id);
+        res.status(200).json({message: "Item removed from cart!"});
+    } catch(error) {
+        console.log(error);
+        res.status(500).json({message: "Could not remove item from cart!"});
     }
 }

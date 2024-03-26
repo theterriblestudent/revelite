@@ -59,8 +59,11 @@
 {{!-- Products Display --}}
        {{#each products}}
        <div class="product">
-            <div class="[ image-bg ][ flx jc-center ai-center mb-10 ]">
+            <div class="[ image-bg ][ relative flx jc-center ai-center mb-10 ]">
                 <img src="/static/product_images{{this.image}}"/>
+                <div onclick="addToCart({{this.id}})" class="[ add-to-cart-button ][ absolute flex ai-center jc-center pb-5 pt-10 pl-10 pr-10 r-0 b-0 ][ no-border pointer ]">
+                    <i class="[ fas fa-cart-plus ][][ fs-20 clr-light ]"></i>
+                </div>
             </div>
             <p class="[ font-primary uppercase ][ mb-10 ]">{{this.name}}</p>
             <div class="[ flx row jc-sb ai-center ]">
@@ -93,6 +96,62 @@
             else 
                 productsSection.style.top = `${categoryChev.getBoundingClientRect().bottom - 90}px`;
         });
+
+        function addToCart(item) {
+            fetch("/shop/cart", {
+                method: 'POST',
+                body: JSON.stringify(
+                    {
+                        item_id: item
+                    }
+                ),
+                headers: {"Content-Type": "application/json"}
+            })
+            .then(response => {
+                response.json()
+                .then(function(data) {
+                    if(response.status === 401) {
+                        const currentCart = JSON.parse(localStorage.getItem("cart") || "[]");
+                        let alreadyInCart = false;
+
+                        currentCart.forEach((cart_item) => {
+                            if(cart_item.id == item) {
+                                cart_item.qty++;
+                                alreadyInCart = true;
+                            }
+                        });
+
+                        if (!alreadyInCart) {
+                            currentCart.push({id: item, qty: 1});
+                        }
+
+                        localStorage.setItem("cart", JSON.stringify(currentCart));localStorage.setItem("cart", JSON.stringify(currentCart));
+                    }
+                })
+                .catch(error => console.log(error));
+            }).catch((error) => {
+               console.log(error);
+            })    
+        }
+
+        function removeFromCart(cart_item) {
+            fetch('/shop/cart', {
+                method: 'DELETE',
+                body: JSON.stringify({
+                    cart_item
+                }),
+                headers: {"Content-Type": "application/json"}
+            })
+            .then(response => response.json().then(data => {
+                const currentCart = JSON.parse(localStorage.getItem("cart") || "[]");
+
+                currentCart = currentCart.filter(item => item.id !== cart_item.id);
+
+                localStorage.setItem("cart", JSON.stringify(currentCart));
+            })
+            .catch(error => console.log(error)))
+            .catch(error => console.log(error));
+        }
 
     </script>
 </section>

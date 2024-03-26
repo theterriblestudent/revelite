@@ -58,6 +58,7 @@ module.exports.login_post = async function(req, res) {
             }
 
         }catch(error) {
+            console.log(error);
             res.status(404).json({message: "Wrong email or password"});
         }
     }else{

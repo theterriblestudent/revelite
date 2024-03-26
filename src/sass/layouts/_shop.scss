@@ -58,6 +58,32 @@
                 img {
                     width: 80%;
                 }
+
+                .add-to-cart-button {
+                    background-color: lighten(variables.$dark-color, 35);
+
+                    transition: background-color 0.25s ease-in;
+
+                    .fa-cart-plus {
+                        transition: transform 0.25s ease-in;
+                    }
+
+                    &:hover {
+                        background-color: lighten(variables.$dark-color, 15);
+                        & > .fa-cart-plus {
+                            transform: scale(0.85);
+                        }
+                    }
+
+                    @media only screen and (max-width: 500px) {
+                        padding: 6px;
+                        padding-bottom: 3px;
+
+                        .fa-cart-plus {
+                            font-size: 16px;
+                        }
+                    }
+                }
             }
 
             & > p {

@@ -190,6 +190,14 @@
 
 
 //Horizantal
+.pl-10 {
+    padding-left: 10px;
+}
+
+.pr-10 {
+    padding-right: 10px;
+}
+
 .pl-25 {
     padding-left: 25px;
  }
@@ -377,6 +385,10 @@
 
 .relative {
     position: relative;
+}
+
+.fixed {
+    position: fixed;
 }
 
 .t-0 {

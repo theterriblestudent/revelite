@@ -18,6 +18,10 @@
             <a href="/services" class="[ clr-heading accent-hover clr-trans ]">Services</a>
             <a href="#" class="[ clr-heading accent-hover clr-trans ]">Gallery</a>
             <a href="/about" class="[ clr-heading accent-hover clr-trans ]">About Us</a>
+            <div class="[ cart-button ][ flx row ai-center g-5 pointer ]">
+                <i class='[ fa-solid fa-cart-shopping ] [ clr-trans fs-18]'></i>
+                <a href="#" class="[ clr-heading clr-trans lh-0 ]">Cart</a>
+            </div>
             {{#if user}}
                 <div class="[ dropdown-link account-link ][ relative ][ flx row ai-center g-5 pointer clr-heading ]">
                     <i class='[ fas fa-user-circle ] [ clr-trans fs-18]'></i>
@@ -35,7 +39,10 @@
             </div>
             {{/unless}}
         </div>
-        <i class="[ fas fa-bars ][ none block-md ][ clr-trans fs-20 ]"></i>
+        <div class="[ mobile-buttons ][ flx row ai-center g-30 ]">
+            <i class='[ mobile-cart-button ][ fa-solid fa-cart-shopping ] [ clr-trans fs-18 ]'></i>
+            <i class="[ fas fa-bars ][ none block-md ][ clr-trans fs-20 ]"></i>
+        </div>
         <div class="[ mobile-nav ][ flx-md js-center ai-center ]">
             <ul class="[ no-list-style ][ flx g-10 column ]">
                 <li><a  class="[ fs-20 heading ]" href="/">Home</a></li>

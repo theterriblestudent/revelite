@@ -46,11 +46,11 @@ nav {
             } 
         }
 
-        & > i  {
+        & > .mobile-buttons  {
             display: none !important;
             
             @media only screen and (max-width: variables.$tablet-size) {
-                display: block !important;
+                display: flex !important;
             }
         }
 
@@ -90,7 +90,7 @@ nav {
 @media only screen and (max-width: 860px) {
     nav {
         .nav__content {
-            .branding, & > i {
+            .branding, & > .mobile-buttons > i {
                 color: variables.$light-color;
             }
         }

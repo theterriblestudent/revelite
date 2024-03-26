@@ -24,6 +24,8 @@ app.set("view engine", "handlebars")
 app.set("views", path.join(__dirname, "views"));
 
 app.get("*", authMiddleware.checkUser);
+app.post("*", authMiddleware.checkUser);
+app.delete("*", authMiddleware.checkUser);
 
 //Router
 app.use("/shop" , shopRouter);

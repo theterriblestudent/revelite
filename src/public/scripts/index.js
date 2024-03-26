@@ -6,8 +6,12 @@ const accountLink = document.querySelector(".account-link");
 const acocuntSettings = accountLink && accountLink.querySelector("div");
 
 const mobileNav = document.querySelector('.mobile-nav');
-const closeNavButton = document.querySelector('.fa-times');
+const closeNavButton = mobileNav.querySelector('.fa-times');
 const openNavButton = document.querySelector(".fa-bars");
+const openCartButton = document.querySelector(".cart-button");
+const mobileCartButton = document.querySelector(".mobile-cart-button");
+const cart = document.querySelector(".shopping-cart");
+const closeCart = cart.querySelector(".fa-times");
 
 //Event Listeners
 shopLink.addEventListener('click', function() {
@@ -27,6 +31,19 @@ closeNavButton.addEventListener("click", function() {
 openNavButton.addEventListener("click", function() {
     mobileNav.classList.add("shown-nav");
 });
+
+//Open Cart 
+function openCart(event) {
+    cart.classList.add("shown-cart");
+}
+
+openCartButton.addEventListener("click", openCart)
+mobileCartButton.addEventListener("click", openCart)
+
+//Close Cart
+closeCart.addEventListener("click", function(event) {
+    cart.classList.remove("shown-cart");
+})
 
 
 body.addEventListener('click', function(event) {
