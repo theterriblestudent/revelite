@@ -63,6 +63,24 @@
                 if (res.status !== 200) {
                     setError(password, data.message);
                 }else {
+                    const localCart = JSON.parse(localStorage.getItem("cart") || "[]");
+
+                    if (localCart.length > 0) {
+                        fetch("/shop/cart/localcart", {
+                            method: "POST",
+                            body: JSON.stringify({
+                                cartItems: localCart,
+                            }),
+                            headers: {"Content-Type" : "application/json"}
+                        })
+                        .then(response => response.json().then(remoteCart => {
+                            console.log(remoteCart);
+                            localStorage.removeItem("cart");
+                        }))
+                        .catch(error => {
+                            console.log(error);
+                        })
+                    }
                     window.location.assign("/");
                 }
             });

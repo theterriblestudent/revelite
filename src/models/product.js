@@ -27,14 +27,49 @@ module.exports.search = async function(query) {
     return products.rows;
 }
 
-module.exports.addItemToCart = async function(item_id, cart_id) {
-    const cart_item = await database.query(`
-        INSERT INTO cart_item(cart_id, item_id, qty) VALUES(${cart_id}, ${item_id}, 1)
-        ON CONFLICT(item_id, cart_id) DO UPDATE SET
-        qty = cart_item.qty + EXCLUDED.qty RETURNING *;
+module.exports.getCart = async function(user_cart_id) {
+    const cart = await database.query(`
+        SELECT * FROM cart_item WHERE cart_id=${user_cart_id};
     `);
 
-    return cart_item;
+    return cart.rows;
+}
+
+module.exports.getCartItems = async function(user_cart_id) {
+    const cart = await database.query(`
+        SELECT product.id, qty, name, price, image FROM cart_item
+        JOIN product ON item_id=product.id
+        WHERE cart_id=${user_cart_id};
+    `);
+
+    return cart.rows;
+}
+
+module.exports.addItemToCart = async function(item_id, qty, cart_id) {
+    
+    const cart_item = await database.query(`
+        WITH inserted_item AS (
+            INSERT INTO cart_item(cart_id, item_id, qty) VALUES(${cart_id}, ${item_id}, ${qty})
+            ON CONFLICT(item_id, cart_id) DO UPDATE SET
+            qty = cart_item.qty + EXCLUDED.qty RETURNING item_id  
+        ) SELECT product.id, name, price, image FROM product 
+          WHERE product.id IN (SELECT * FROM inserted_item);
+    `);
+
+    return cart_item.rows[0];
+}
+
+module.exports.addItemsToCart = async function(values) {
+    const insertedItems = await database.query(`
+        WITH data(cart, item, quantity) AS (
+            ${values}
+        ) INSERT INTO cart_item(cart_id, item_id, qty) 
+          SELECT cart, item, quantity FROM data
+          ON CONFLICT(cart_id, item_id) DO UPDATE SET
+          qty = cart_item.qty + EXCLUDED.qty RETURNING *;
+    `);
+
+    return insertedItems.rows;
 }
 
 module.exports.deleteItemFromCart = async function(cart_item_id) {

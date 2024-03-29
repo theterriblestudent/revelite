@@ -5,6 +5,7 @@ const cookeParser = require("cookie-parser");
 const { engine } = require("express-handlebars");
 const { authMiddleware } = require("./middleware"); 
 const { authRouter, shopRouter } = require("./routes");
+const { Product } = require("./models");
 
 
 //Server instantiation
@@ -23,7 +24,13 @@ app.engine("handlebars", engine());
 app.set("view engine", "handlebars")
 app.set("views", path.join(__dirname, "views"));
 
-app.get("*", authMiddleware.checkUser);
+app.get("*", [authMiddleware.checkUser,async  (req, res, next) => {
+    if(res.locals.user) {
+        res.locals.cart = await Product.getCart(res.locals.user.cart_id);
+    }
+
+    next();
+}]);
 app.post("*", authMiddleware.checkUser);
 app.delete("*", authMiddleware.checkUser);
 

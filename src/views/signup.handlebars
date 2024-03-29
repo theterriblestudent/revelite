@@ -127,6 +127,24 @@
                     }
                 }
                 else {
+                    const localCart = JSON.parse(localStorage.getItem("cart") || "[]");
+
+                    if (localCart.length > 0) {
+                        fetch("/shop/cart/localcart", {
+                            method: "POST",
+                            body: JSON.stringify({
+                                cartItems: localCart,
+                            }),
+                            header: {"Content-Type" : "json/application"}
+                        })
+                        .then(response => response.json().then(remoteCart => {
+                            console.log(remoteCart)
+                            localStorage.removeItem("cart");
+                        }))
+                        .catch(errro => {
+                            console.log(error);
+                        })
+                    }
                     window.location.assign("/");
                 }
             });

@@ -1,23 +1,6 @@
 <div class="[ shopping-cart ][ fixed t-0 r-0 b-0 pb-30 pl-35 pr-35 ]">
     <h1 class="[ heading ][ mb-35 relative pt-30 pl-35 pb-30 pr-35 flx row ai-center jc-sb ][ fs-30 ]">Your Cart<i class="[ fas fa-times ][ fs-24 pointer ]"></i></h1>
-    <div class="[ cart-items ][ flx column g-20 ai-start ]">
-        <div class="[ cart-item ][ grd g-20 ]">
-            <div class="[ img-bg ][ flx jc-center ai-center ]">
-                <img src="/static/product_images/wheels/wheel_01.png" alt="">
-            </div>
-            <div class="[ flx row js-sb ai-start g-50 ]">
-                <h2 class="[][ font-primary clr-dark fs-20 fw-norm uppercase ]">Wheels that are the first in cart</h2>
-                <i class="[ fa-solid fa-trash-can ][ pt-5 fs-18 ]" aria-hidden="true"></i>
-            </div>
-            <div class="[ w-fit ][ flx row jc-sb ai-center ]">
-                <h2 class="[ heading ][ fs-24 ]">R 30000</h2>
-                <div class="[ qty-selector ][ flx row g-20 ai-center jc-start pt-5 pb-5 pl-25 pr-25 ]">
-                    <p class="[ heading ][ fs-20 fw-bold ]">-</p>
-                    <p class="[ heading ][ fs-20 fw-bold ]">1</p>
-                    <p class="[ heading ][ fs-20 fw-bold ]">+</p>
-                </div>
-            </div>
-        </div>
+    <div class="[ cart-items ][ flx column g-40 ai-start ]">
     </div>
     <div class="[ checkout-section ][ fixed b-0 r-0 flx column ai-stretch g-30 pl-35 pr-35 pb-30 pt-30 ]">
         <div class="[ flx row jc-sb ai-center ]">
@@ -26,4 +9,62 @@
         </div>
         <button class="[ heading ][ pt-10 pb-10 ][ pointer fs-20 clr-light bg-dark no-border ]">Proceed To checkout</button>
     </div>
+
+    <script>
+        const cartItems = document.querySelector(".cart-items");
+        const localCart = JSON.parse(localStorage.getItem("cart") || "[]");
+
+        fetch("/shop/cart").then(response => {
+            if(response.status === 200) {
+                response.json().then(data => {
+                    data.cart.forEach(item => {
+                        cartItems.innerHTML += 
+                        `
+                            <div id="item-${item.id}" class="[ cart-item ][ grd g-20 ]">
+                                <div class="[ img-bg ][ flx jc-center ai-center ]">
+                                    <img src="/static/product_images${item.image}" alt="">
+                                </div>
+                                <div class="[ flx row js-sb ai-start g-50 ]">
+                                    <h2 class="[ item-name ][ font-primary clr-dark fs-20 fw-norm ]">${item.name}</h2>
+                                    <i class="[ fa-solid fa-trash-can ][ pt-5 fs-18 ]" aria-hidden="true"></i>
+                                </div>
+                                <div class="[ w-fit ][ flx row jc-sb ai-center ]">
+                                    <h2 class="[ heading ][ fs-24 ]">R ${item.price}</h2>
+                                    <div class="[ qty-selector ][ flx row g-20 ai-center jc-start pt-5 pb-5 pl-25 pr-25 ]">
+                                        <p class="[ heading ][ fs-20 fw-bold pointer ]">-</p>
+                                        <p class="[ qty ][ heading ][ fs-20 fw-bold ]">${item.qty}</p>
+                                        <p class="[ heading ][ fs-20 fw-bold pointer ]">+</p>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                    })
+                })
+            }
+            else if(response.status === 401) {
+                localCart.forEach(item => {
+                    cartItems.innerHTML += 
+                    `
+                        <div id="item-${item.id}" class="[ cart-item ][ grd g-20 ]">
+                            <div class="[ img-bg ][ flx jc-center ai-center ]">
+                                <img src="/static/product_images${item.image}" alt="">
+                            </div>
+                            <div class="[ flx row js-sb ai-start g-50 ]">
+                                <h2 class="[][ font-primary clr-dark fs-20 fw-norm ]">${item.name}</h2>
+                                <i class="[ fa-solid fa-trash-can ][ pt-5 fs-18 ]" aria-hidden="true"></i>
+                            </div>
+                            <div class="[ w-fit ][ flx row jc-sb ai-center ]">
+                                <h2 class="[ heading ][ fs-24 ]">R ${item.price}</h2>
+                                <div class="[ qty-selector ][ flx row g-20 ai-center jc-start pt-5 pb-5 pl-25 pr-25 ]">
+                                    <p class="[ heading ][ fs-20 fw-bold pointer ]">-</p>
+                                    <p class="[ qty ][ heading ][ fs-20 fw-bold ]">${item.qty}</p>
+                                    <p class="[ heading ][ fs-20 fw-bold pointer ]">+</p>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                })
+            }
+        })
+    </script>        
 </div>
