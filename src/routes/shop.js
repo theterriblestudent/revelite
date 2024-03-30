@@ -12,6 +12,7 @@ router.get("/search", shopController.search);
 router.get("/cart", shopController.get_cart);
 router.post("/cart", shopController.post_add_item_to_cart);
 router.post("/cart/localcart", shopController.post_local_cart);
+router.patch("/cart", shopController.delete_item_quantity);
 router.delete("/cart", shopController.delete_item_from_cart);
 
 module.exports = router;

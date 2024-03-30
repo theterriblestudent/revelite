@@ -33,6 +33,7 @@ app.get("*", [authMiddleware.checkUser,async  (req, res, next) => {
 }]);
 app.post("*", authMiddleware.checkUser);
 app.delete("*", authMiddleware.checkUser);
+app.patch("*", authMiddleware.checkUser);
 
 //Router
 app.use("/shop" , shopRouter);

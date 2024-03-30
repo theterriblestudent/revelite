@@ -72,13 +72,13 @@ module.exports.addItemsToCart = async function(values) {
     return insertedItems.rows;
 }
 
-module.exports.deleteItemFromCart = async function(cart_item_id) {
-    database.query(`DELETE FROM cart_item WHERE id = ${cart_item_id};`);
+module.exports.deleteItemFromCart = async function(item_id, cart_id) {
+    database.query(`DELETE FROM cart_item WHERE item_id = ${item_id} AND cart_id = ${cart_id};`);
 }
 
-module.exports.deletItemQuantity = async function(cart_item_id) {
+module.exports.deleteItemQuantity = async function(item_id, cart_id) {
     const updted_item = await database.query(`
-        UPDATE TABLE cart_item SET qty = qty - 1 WHERE id=${cart_item_id} RETURNING *;
+        UPDATE cart_item SET qty = cart_item.qty - 1 WHERE item_id=${item_id} AND cart_id = ${cart_id} RETURNING *;
     `);
 
     return updted_item;

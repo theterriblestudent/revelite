@@ -104,13 +104,32 @@ module.exports.post_local_cart = async function(req, res) {
 }
 
 module.exports.delete_item_from_cart = async function(req, res) {
-    try {
-        Product.deleteItemFromCart(cart_item_id).then(async () => {
-            res.locals.cart = await Product.getCart(res.locals.user.cart_id)
-        });
-        res.status(200).json({message: "Item removed from cart!"});
-    } catch(error) {
-        console.log(error);
-        res.status(500).json({message: "Could not remove item from cart!"});
+    const { item_id } = req.body;
+    if (res.locals.user) {
+        try {
+            Product.deleteItemFromCart(item_id, res.locals.user.cart_id).then(() => {
+                res.status(200).json({message: "Item removed from cart!"});
+            });
+        } catch(error) {
+            console.log(error);
+            res.status(500).json({message: "Could not remove item from cart!"});
+        }
+    } else {
+        res.status(401).json({ message: "User not logged in!"});
+    }
+}
+
+module.exports.delete_item_quantity = async function(req, res) {
+    if (res.locals.user) {
+        const { item_id } = req.body;
+
+        Product.deleteItemQuantity(item_id, res.locals.user.cart_id).then((updated_item) => {
+            res.status(200).json({ updated_item, message: "Item removed from cart!" });
+        }).catch((error) => {
+            console.log(error);
+            res.status(500).json({ message: "Could not remove item from cart!" });
+        })
+    } else {
+        res.status(401).json({ message: "User not logged in!"});
     }
 }
