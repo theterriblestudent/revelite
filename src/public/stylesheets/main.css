@@ -317,6 +317,14 @@ nav .nav__content .shown-nav {
   padding-bottom: 160px;
 }
 
+.pl-5 {
+  padding-left: 5x;
+}
+
+.pr-5 {
+  padding-right: 5px;
+}
+
 .pl-10 {
   padding-left: 10px;
 }
@@ -798,6 +806,10 @@ nav .nav__content .shown-nav {
 
 .x-scroll {
   overflow-x: scroll;
+}
+
+.y-scroll {
+  overflow-y: scroll;
 }
 
 .x-hidden {

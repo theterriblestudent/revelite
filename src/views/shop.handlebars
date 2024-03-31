@@ -77,4 +77,22 @@
        {{/each}}
         </div>
     </div>
+    <script>
+        let isCategorySectionShown = false;
+
+        const categoryChev = document.querySelector(".fa-chevron-down");
+        const productsSection = document.querySelector(".products");
+        const categorySelector = document.querySelector(".category-selector");
+
+        productsSection.style.top = `${categoryChev.getBoundingClientRect().bottom - 90}px`;
+
+        categoryChev.addEventListener('click', function(event) {
+            categoryChev.classList.toggle("opened-category-selector-chevron")
+
+            if (isCategorySectionShown = !isCategorySectionShown) 
+                productsSection.style.top = `${categorySelector.getBoundingClientRect().bottom - 60}px`;
+            else 
+                productsSection.style.top = `${categoryChev.getBoundingClientRect().bottom - 90}px`;
+        });
+    </script>
 </section>

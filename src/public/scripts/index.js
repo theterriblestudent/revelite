@@ -13,11 +13,6 @@ const mobileCartButton = document.querySelector(".mobile-cart-button");
 const cart = document.querySelector(".shopping-cart");
 const closeCart = cart.querySelector(".fa-times");
 
-let isCategorySectionShown = false;
-
-const categoryChev = document.querySelector(".fa-chevron-down");
-const productsSection = document.querySelector(".products");
-const categorySelector = document.querySelector(".category-selector");
 
 const cartItemsContainer = document.querySelector(".cart-items");
 const localCart = JSON.parse(localStorage.getItem("cart") || "[]");
@@ -66,17 +61,6 @@ body.addEventListener('click', function(event) {
     if (!document.querySelector('nav').contains(event.target)) {
         mobileNav.classList.remove("shown-nav");
     }
-})
-
-productsSection.style.top = `${categoryChev.getBoundingClientRect().bottom - 90}px`;
-
-categoryChev.addEventListener('click', function(event) {
-    categoryChev.classList.toggle("opened-category-selector-chevron")
-
-    if (isCategorySectionShown = !isCategorySectionShown) 
-        productsSection.style.top = `${categorySelector.getBoundingClientRect().bottom - 60}px`;
-    else 
-        productsSection.style.top = `${categoryChev.getBoundingClientRect().bottom - 90}px`;
 });
 
 function getItemHTML(item) {
@@ -91,11 +75,11 @@ function getItemHTML(item) {
                     <i class="[ delete-item-button ][ fa-solid fa-trash-can ][ pt-5 fs-18 ]" aria-hidden="true"></i>
                 </div>
                 <div class="[ w-fit ][ flx row jc-sb ai-center ]">
-                    <h2 class="[ heading ][ fs-24 ]">R ${item.price}</h2>
-                    <div class="[ qty-selector ][ flx row g-20 ai-center jc-start pt-5 pb-5 pl-25 pr-25 ]">
-                        <p class="[ remove-quantity-button ][ heading ][ fs-20 fw-bold pointer ]">-</p>
+                    <h2 class="[ item-price ][ heading ][ fs-24 ]">R ${item.price}</h2>
+                    <div class="[ qty-selector ][ flx row g-20 ai-center jc-start pl-10 pr-10 ]">
+                        <p class="[ remove-quantity-button ][ heading ][ fs-20 fw-bold pointer pl-5 pr-5 pt-5 pb-5 ]">-</p>
                         <p class="[ qty ][ heading ][ fs-20 fw-bold ]">${item.qty || 1}</p>
-                        <p class="[ add-quantity-button ][ heading ][ fs-20 fw-bold pointer ]">+</p>
+                        <p class="[ add-quantity-button ][ heading ][ fs-20 fw-bold pointer pl-5 pr-5 pt-5 pb-5 ]">+</p>
                     </div>
                 </div>
             </div>
@@ -130,12 +114,19 @@ function addToCart(item_id, price = 0.00, name = "", image = "") {
                         parseInt(document.querySelector(`#item-${item_id}`).querySelector(".qty").innerHTML) + 1;
                         cart_item.qty++;
                         alreadyInCart = true;
+
+                        updateTotals();
                     }
                 });
 
                 if (!alreadyInCart) {
                     currentCart.push({id: item_id, qty: 1, price, name, image});
                     cartItemsDiv.innerHTML += getItemHTML({id: item_id, name, image, price});
+
+                    window.setTimeout(() => {
+                        addItemEventListeners();
+                    }, 10);
+
                 }
                 localStorage.setItem("cart", JSON.stringify(currentCart));
 
@@ -143,9 +134,13 @@ function addToCart(item_id, price = 0.00, name = "", image = "") {
 
                 if(cartItemHTML) {
                     cartItemHTML.querySelector(".qty").innerHTML = `${parseInt(cartItemHTML.querySelector(".qty").innerHTML) + 1}`;
+                    updateTotals();
                 }
                 else  {
-                    cartItemsDiv.innerHTML += getItemHTML(data)
+                    cartItemsDiv.innerHTML += getItemHTML(data);
+                    window.setTimeout(() => {
+                        addItemEventListeners();
+                    }, 10);
                 };
             }
         })
@@ -166,6 +161,7 @@ function removeFromCart(item_id) {
     .then(response => response.json().then(data => {
         if (response.status === 200) {
             cartItemsContainer.removeChild(document.getElementById(`item-${item_id}`));
+            updateTotals();
 
         } else if (response.status === 401) {
             let currentCart = JSON.parse(localStorage.getItem("cart") || "[]");
@@ -173,6 +169,7 @@ function removeFromCart(item_id) {
             localStorage.setItem("cart", JSON.stringify(currentCart));
 
             cartItemsContainer.removeChild(document.getElementById(`item-${item_id}`));
+            updateTotals();
         }
     })
     .catch(error => console.log(error)))
@@ -196,6 +193,7 @@ function removeItemQuantity(item_id, qty_str) {
     }).then(response => response.json().then(data => {
         if(response.status === 200) {
             cartItemsContainer.querySelector(`#item-${item_id}`).querySelector(".qty").innerHTML = qty - 1;
+            updateTotals();
         } else if (response.status === 401) {
             const localCart = JSON.parse(localStorage.getItem("cart") || "[]");
 
@@ -207,42 +205,58 @@ function removeItemQuantity(item_id, qty_str) {
 
             localStorage.setItem("cart", JSON.stringify(localCart));
             cartItemsContainer.querySelector(`#item-${item_id}`).querySelector(".qty").innerHTML = qty - 1;
+            updateTotals();
         }
     }))
 }
 
-function addItemClickEvents(item) {
-    item.querySelector(".add-quantity-button").addEventListener("click", function(event) {
-        addToCart(parseInt(item.id.split("-")[1]));
+function eventHandlers(event) {
+    const target = event.target;
+
+    if (target.classList.contains("add-quantity-button")) {
+        addToCart(parseInt(target.closest(".cart-item").id.split("-")[1]));
+    } else if (target.classList.contains("remove-quantity-button")) {
+        removeItemQuantity(parseInt(target.closest(".cart-item").id.split("-")[1]), target.closest(".cart-item").querySelector(".qty").innerHTML);
+    } else if(target.classList.contains("delete-item-button")) {
+        removeFromCart(parseInt(target.closest(".cart-item").id.split("-")[1]));
+    }
+}
+
+function updateTotals() {
+    const totalCostP = document.querySelector("#total-price");
+    const totalQtyP = document.getElementById("items-no");
+
+    let totalCost = 0;
+    let totalQty = 0;
+
+    cartItemsContainer.querySelectorAll(".cart-item").forEach(item => {
+        totalCost += parseFloat(item.querySelector(".item-price").innerHTML.split(" ")[1]) * parseInt(item.querySelector(".qty").innerHTML);
+        totalQty += parseInt(item.querySelector(".qty").innerHTML);
     });
-    item.querySelector(".delete-item-button").addEventListener("click", function(event) {
-        removeFromCart(parseInt(item.id.split("-")[1]));
-    });
-    item.querySelector(".remove-quantity-button").addEventListener("click", function(event) {
-        removeItemQuantity(parseInt(item.id.split("-")[1]), item.querySelector(".qty").innerHTML);
-    });
+
+    totalCostP.innerHTML = `R ${totalCost}`;
+    totalQtyP.innerHTML = `(${totalQty} items)`;
 }
 
 function addItemEventListeners() {
-    const cartItems = document.querySelectorAll(".cart-item");
+    cartItemsContainer.removeEventListener("click", eventHandlers);
+    cartItemsContainer.addEventListener("click", eventHandlers);
 
-    cartItems.forEach(cartItem => {
-        addItemClickEvents(cartItem);
-    })
+    updateTotals();
 }
 
 fetch("/shop/cart").then(response => {
     if(response.status === 200) {
         response.json().then(data => {
             data.cart.forEach(item => {
-                cartItemsContainer.innerHTML += getItemHTML(item);  
+                cartItemsContainer.innerHTML += getItemHTML(item);
             });
-            addItemEventListeners();
+            addItemEventListeners({totalCost, totalItems});
         })
     }
     else if(response.status === 401) {
         localCart.forEach(item =>  {
-            cartItemsContainer.innerHTML += getItemHTML(item)
+            cartItemsContainer.innerHTML += getItemHTML(item);
         });
         addItemEventListeners();
     }

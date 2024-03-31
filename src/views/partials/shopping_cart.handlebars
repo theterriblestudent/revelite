@@ -1,12 +1,24 @@
 <div class="[ shopping-cart ][ fixed t-0 r-0 b-0 pb-30 pl-35 pr-35 ]">
-    <h1 class="[ heading ][ mb-35 relative pt-30 pl-35 pb-30 pr-35 flx row ai-center jc-sb ][ fs-30 ]">Your Cart<i class="[ fas fa-times ][ fs-24 pointer ]"></i></h1>
-    <div class="[ cart-items ][ flx column g-40 ai-start ]">
+    <h1 id="cart-heading" class="[ heading ][ relative pt-30 pl-35 pb-30 pr-35 flx row ai-center jc-sb ][ fs-30 ]">Your Cart<i class="[ fas fa-times ][ fs-24 pointer ]"></i></h1>
+    <div class="[ cart-items no-scrollbar ][ flx column g-40 ai-start relative pt-30 pb-30 ][ y-scroll ]">
     </div>
     <div class="[ checkout-section ][ fixed b-0 r-0 flx column ai-stretch g-30 pl-35 pr-35 pb-30 pt-30 ]">
         <div class="[ flx row jc-sb ai-center ]">
-            <h2 class="[ heading ][ fs-24 fw-norm ]">Subtotal<span class="[ font-primary ]">(2 items)</span></h2>
-            <h2 class="[ heading ][ fs-24 ]">R 3000</h2>
+            <h2 class="[ heading ][ fs-24 fw-norm ]">Subtotal<span id="items-no" class="[ font-primary ]">(0 items)</span></h2>
+            <h2 id="total-price" class="[ heading ][ fs-24 ]">R 0</h2>
         </div>
         <button class="[ heading ][ pt-10 pb-10 ][ pointer fs-20 clr-light bg-dark no-border ]">Proceed To checkout</button>
-    </div>     
+    </div>
+    
+    <script>
+        const cartItems = document.querySelector(".cart-items");
+
+        const headingStyle = window.getComputedStyle(document.querySelector("#cart-heading"));
+        const checkoutStyles = window.getComputedStyle(document.querySelector(".checkout-section"))
+
+        const headingHeight = parseFloat(headingStyle.height);
+        const checkoutHeight = parseFloat(checkoutStyles.height);
+        
+       cartItems.style.height = `calc(100vh - ${headingHeight + checkoutHeight}px)`;
+    </script>    
 </div>
