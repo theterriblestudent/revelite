@@ -38,13 +38,13 @@
             <div class="[ flx-1 ]">
                 <label class="[ body-text fs-18 ]" for="sort">Sort by: </label>
                 <select class="[ select ][ body-text fs-18 ]" name="sort" id="sort-select">
+                    <option class="[ body-text fs-18 ]">--Select--</option>
                     <option class="[ body-text fs-18 ]">Price</option>
                     <option class="[ body-text fs-18 ]">Name</option>
-                    <option class="[ body-text fs-18 ]">Year </option>
                 </select>
             </div>
 
-            <p class="[ body-text fs-18 ][ none-md ]">20 items</p>
+            <p id="total-items" class="[ body-text fs-18 ][ none-md ]">20 items</p>
 
             <div>
                 <label class="[ body-text fs-18 ]" for="show">Show: </label>
@@ -65,11 +65,11 @@
                     <i class="[ fas fa-cart-plus ][][ fs-20 clr-light ]"></i>
                 </div>
             </div>
-            <p class="[ font-primary uppercase ][ mb-10 ]">{{this.name}}</p>
+            <p class="[ product-name ][ font-primary uppercase ][ mb-10 ]">{{this.name}}</p>
             <div class="[ flx row jc-sb ai-center ]">
                 <div class="[ flx row ai-center g-5 ]">
                     <i class="fa-solid fa-cart-shopping"></i>
-                    <p class="[ body-text ]">R {{this.price}}</p>
+                    <p class="[ product-price ][ body-text ]">R {{this.price}}</p>
                 </div>
                 <i class="fa-regular fa-heart"></i>
             </div>
@@ -79,10 +79,49 @@
     </div>
     <script>
         let isCategorySectionShown = false;
+        const totalProducts = document.getElementById("total-items");
+        const items = Array.from(document.querySelectorAll(".product"));
+        const sortSelect = document.querySelector("#sort-select");
 
         const categoryChev = document.querySelector(".fa-chevron-down");
         const productsSection = document.querySelector(".products");
         const categorySelector = document.querySelector(".category-selector");
+
+        totalProducts.innerHTML = `${items.length} items`;
+
+        sortSelect.addEventListener("change", function(event) {
+            const optionIndex = event.target.selectedIndex;
+
+            if (optionIndex === 1) {
+                const sortedItems = items.sort((a, b) => {
+                    return parseFloat(a.querySelector(".product-price").innerHTML.split(" ")[1]) -
+                    parseFloat(b.querySelector(".product-price").innerHTML.split(" ")[1]);
+                })
+
+                addSortedProducts(sortedItems);
+
+            } else if (optionIndex === 2) {
+                const sortedItems = items.sort((a, b) => {
+                    return a.querySelector(".product-name").innerHTML.localeCompare(b.querySelector(".product-name").innerHTML)
+                })
+
+                addSortedProducts(sortedItems);
+            }
+        })
+
+        function addSortedProducts(sortedProducts) {
+           const productsConfig = Array.from(productsSection.children).slice(0, 3);
+
+           productsSection.innerHTML = "";
+
+           productsConfig.forEach(element => {
+            productsSection.appendChild(element);
+           })
+
+           sortedProducts.forEach(product => {
+            productsSection.appendChild(product);
+           }) 
+        }
 
         productsSection.style.top = `${categoryChev.getBoundingClientRect().bottom - 90}px`;
 
