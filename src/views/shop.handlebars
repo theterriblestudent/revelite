@@ -29,7 +29,7 @@
     </div>
 
 {{!--Products Section  --}}
-    <div class="[ products ][ pt-10 grd g-30 g-15-md ai-start ac-start ][  ]">
+    <div class="[ products ][ relative pt-10 grd g-30 g-15-md ai-start ac-start ][  ]">
         <h1 class="[ heading fs-24 txt-center none-md ]">Products</h1>
         <p class="[ body-text ][ none block-md ]">Showing 20 items</p>
 
@@ -61,20 +61,18 @@
        <div class="product">
             <div class="[ image-bg ][ relative flx jc-center ai-center mb-10 ]">
                 <img src="/static/product_images{{this.image}}"/>
-                <div onclick="addToCart({{this.id}}, {{this.price}}, '{{this.name}}', '{{this.image}}')" class="[ add-to-cart-button ][ absolute flex ai-center jc-center pb-5 pt-10 pl-10 pr-10 r-0 b-0 ][ no-border pointer ]">
-                    <i class="[ fas fa-cart-plus ][][ fs-20 clr-light ]"></i>
-                </div>
             </div>
             <p class="[ product-name ][ font-primary uppercase ][ mb-10 ]">{{this.name}}</p>
             <div class="[ flx row jc-sb ai-center ]">
-                <div class="[ flx row ai-center g-5 ]">
-                    <i class="fa-solid fa-cart-shopping"></i>
-                    <p class="[ product-price ][ body-text ]">R {{this.price}}</p>
-                </div>
-                <i class="fa-regular fa-heart"></i>
+                <p class="[ product-price ][ body-text ]">R {{this.price}}</p>
+                <i onclick="addToCart(event, {{this.id}}, {{this.price}}, '{{this.name}}', '{{this.image}}')" class="[ fas fa-cart-plus ][ pointer ]"></i>
+                <img class="[ product__loader ][ none ]" src="/static/icons/90-ring.svg" />
             </div>
         </div>
        {{/each}}
+        <p class="[ toast-message ][ fixed pt-10 pb-10 pr-25 pl-25 ][ font-primary fs-18 clr-light bg-dark ]">
+            Item Added!
+        </p>
         </div>
     </div>
     <script>
@@ -123,7 +121,9 @@
            }) 
         }
 
-        productsSection.style.top = `${categoryChev.getBoundingClientRect().bottom - 90}px`;
+        if (window.innerWidth <= 968) {
+            productsSection.style.top = `${categoryChev.getBoundingClientRect().bottom - 90}px`;
+        }
 
         categoryChev.addEventListener('click', function(event) {
             categoryChev.classList.toggle("opened-category-selector-chevron")

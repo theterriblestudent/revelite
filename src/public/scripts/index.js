@@ -76,9 +76,10 @@ function getItemHTML(item) {
                 </div>
                 <div class="[ w-fit ][ flx row jc-sb ai-center ]">
                     <h2 class="[ item-price ][ heading ][ fs-24 ]">R ${item.price}</h2>
-                    <div class="[ qty-selector ][ flx row g-20 ai-center jc-start pl-10 pr-10 ]">
+                    <div class="[ qty-selector ][ flx row ai-center jc-start pl-10 pr-10 ]">
                         <p class="[ remove-quantity-button ][ heading ][ fs-20 fw-bold pointer pl-5 pr-5 pt-5 pb-5 ]">-</p>
-                        <p class="[ qty ][ heading ][ fs-20 fw-bold ]">${item.qty || 1}</p>
+                        <p class="[ qty qty__value ][ heading ][ fs-20 fw-bold txt-center ]">${item.qty || 1}</p>
+                        <div class="[ qty qty__loader ][ none ai-center jc-center ]"><img src="/static/icons/90-ring.svg"></div>
                         <p class="[ add-quantity-button ][ heading ][ fs-20 fw-bold pointer pl-5 pr-5 pt-5 pb-5 ]">+</p>
                     </div>
                 </div>
@@ -87,7 +88,44 @@ function getItemHTML(item) {
     )
 }
 
-function addToCart(item_id, price = 0.00, name = "", image = "") {
+
+
+function toastMessage(message) {
+    const toastMessage = document.querySelector(".toast-message");
+
+    toastMessage.innerHTML = message;
+
+    toastMessage.style.opacity = 1;
+    window.setTimeout(function() {
+        toastMessage.style.opacity = 0;
+    }, 1200);
+}
+
+function qtyResponse(load, buttonClass, item_id) {
+    const cartItem = document.querySelector(`#item-${item_id}`);
+    cartItem.querySelector(buttonClass).style.pointerEvents = load ? 'none' : 'auto';
+
+    cartItem.querySelector(".qty__value").classList.toggle("none");
+    cartItem.querySelector(".qty__loader").classList.toggle("none");
+    cartItem.querySelector(".qty__loader").classList.toggle("flx");
+}
+
+function addToCart(event, item_id, price = 0.00, name = "", image = "") {
+    const cartIcon = event.target;
+    const product = cartIcon.closest(".product");
+    const loader = product && product.querySelector(".product__loader");
+
+
+    if (name && image) {
+        cartIcon.classList.add("none-icon")
+        loader.classList.remove("none");
+    }
+
+
+    if (!name && !image) {
+        qtyResponse(true, ".add-quantity-button", item_id);
+    }
+
     fetch("/shop/cart", {
         method: 'POST',
         body: JSON.stringify(
@@ -129,6 +167,9 @@ function addToCart(item_id, price = 0.00, name = "", image = "") {
 
                 }
                 localStorage.setItem("cart", JSON.stringify(currentCart));
+                (name && image) && toastMessage("Item Added!");
+
+
 
             }else if (response.status === 200) {
 
@@ -142,12 +183,25 @@ function addToCart(item_id, price = 0.00, name = "", image = "") {
                         addItemEventListeners();
                     }, 10);
                 };
+
+                (name && image) && toastMessage("Item Added!");
             }
         })
         .catch(error => console.log(error));
     }).catch((error) => {
         console.log(error);
-    })    
+        toastMessage("Could not add item!");
+    }).finally(() => {
+        if (name && image) {
+            cartIcon.classList.remove("none-icon")
+            loader.classList.add("none");
+        }
+
+        if (!name && !image) {
+            qtyResponse(false, ".add-quantity-button", item_id);
+        }
+        
+    })
 }
 
 function removeFromCart(item_id) {
@@ -184,6 +238,8 @@ function removeItemQuantity(item_id, qty_str) {
         return;
     }
 
+    qtyResponse(true, ".remove-quantity-button", item_id);
+
     fetch("/shop/cart", {
         method: 'PATCH',
         body: JSON.stringify({
@@ -207,14 +263,18 @@ function removeItemQuantity(item_id, qty_str) {
             cartItemsContainer.querySelector(`#item-${item_id}`).querySelector(".qty").innerHTML = qty - 1;
             updateTotals();
         }
-    }))
+    })).catch(error => {
+        console.log(error);
+    }).finally(() => {
+        qtyResponse(false, ".remove-quantity-button", item_id);
+    })
 }
 
 function eventHandlers(event) {
     const target = event.target;
 
     if (target.classList.contains("add-quantity-button")) {
-        addToCart(parseInt(target.closest(".cart-item").id.split("-")[1]));
+        addToCart(event, parseInt(target.closest(".cart-item").id.split("-")[1]));
     } else if (target.classList.contains("remove-quantity-button")) {
         removeItemQuantity(parseInt(target.closest(".cart-item").id.split("-")[1]), target.closest(".cart-item").querySelector(".qty").innerHTML);
     } else if(target.classList.contains("delete-item-button")) {
@@ -251,7 +311,7 @@ fetch("/shop/cart").then(response => {
             data.cart.forEach(item => {
                 cartItemsContainer.innerHTML += getItemHTML(item);
             });
-            addItemEventListeners({totalCost, totalItems});
+            addItemEventListeners();
         })
     }
     else if(response.status === 401) {

@@ -43,6 +43,15 @@
             .qty-selector {
                 border: 2px solid variables.$dark-color;
                 border-radius: 5px;
+
+                .qty {
+                    width: 3rem;
+
+                    img {
+                        width: 20px;
+                        height: auto;
+                    }
+                }
             }
         }
     }

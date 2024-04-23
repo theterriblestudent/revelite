@@ -27,8 +27,7 @@
                     <i class='[ fas fa-user-circle ] [ clr-trans fs-18]'></i>
                     <a class="[ clr-trans accent-hover ]">{{user.first_name}}</a>
                     <div class="[ flx column g-10 pt-10 pb-10 pl-25 pr-25 ]">
-                        <a class="[ accent-hover clr-trans ]">Cart</a>
-                        <a href="auth/logout" class="[ accent-hover clr-trans ]">Log out</a>
+                        <a href="/auth/logout" class="[ accent-hover clr-trans ]">Log out</a>
                     </div>
                 </div>
             {{/if}}
@@ -60,7 +59,6 @@
             {{#if user}}
                 <li><a  class="[ fs-20 heading ]" href="">{{user.first_name}}</a></li>
                 <ul class="[ no-list-style ] [ flx g-10 column ]">
-                    <li><a  class="[ fs-20 heading ]" href="">Cart</a></li>
                     <li><a  class="[ fs-20 heading ]" href="/auth/logout">Logout</a></li>
                 </ul>
             {{/if}}

@@ -105,6 +105,8 @@
 
             if (error) {return};
 
+            document.querySelector("button").innerHTML = "<img src=\"/static/icons/90-ring.svg\">"
+
             const res = await fetch("/auth/register", {
                 method: 'POST',
                 body: JSON.stringify(
@@ -147,6 +149,10 @@
                     }
                     window.location.assign("/");
                 }
+            }).catch(error => {
+                console.log(error)
+            }).finally(() => {
+                document.querySelector("button").innerHTML = "Submit"
             });
         })
     </script>

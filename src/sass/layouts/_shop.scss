@@ -94,7 +94,7 @@
                 overflow: hidden;
             }
 
-            .fa-solid, .fa-regular {
+            .fa-cart-plus, .fa-regular {
                 color: variables.$body-text-color;
             }
         }
@@ -114,8 +114,19 @@
                 grid-column: span 2;
             }
         }
-    }
 
+        .toast-message {
+            bottom: 50px;
+            right: calc((75vw / 2) - min(5vw, (100vw - 1450px) / 2));
+            border-radius: 1000px;
+            background-color: #222222;
+
+            opacity: 0;
+
+            transition: opacity 0.4s ease-in;
+            // transform: translateX(-50%);
+        }
+    }
 
     .select {
         padding-block: 5px;
